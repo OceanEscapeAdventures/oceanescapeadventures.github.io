@@ -220,9 +220,9 @@ section { padding: 100px 5%; }
 .contact-method h4 { font-size: 14px; text-transform: uppercase; color: #7A9296; letter-spacing: 0.5px; }
 .contact-method p, .contact-method a { font-size: 16px; color: var(--deep-ocean); text-decoration: none; font-weight: 600; margin-top: 2px; display: block; }
 .contact-method a:hover { color: var(--turquoise); }
-.social-links { display: flex; gap: 15px; margin-top: 40px; }
-.social-btn { width: 44px; height: 44px; border-radius: 50%; border: 1px solid #D1E5E7; display: flex; align-items: center; justify-content: center; color: var(--sea-teal); text-decoration: none; transition: all 0.2s; }
-.social-btn:hover { background: var(--turquoise); color: var(--pure-white); border-color: var(--turquoise); transform: translateY(-2px); }
+.social-links { display: none; }
+
+
 .map-card { border-radius: 24px; overflow: hidden; box-shadow: 0 15px 40px rgba(0,43,48,0.08); border: 1px solid rgba(0, 168, 181, 0.1); height: 100%; min-height: 350px; }
 
 footer { background: #001B1E; color: rgba(255, 255, 255, 0.6); padding: 60px 5% 40px 5%; border-top: 1px solid rgba(255,255,255,0.05); }
@@ -315,6 +315,68 @@ footer {
 }
 .prop-card p { color: #3A5558 !important; font-weight: 500 !important; }
 .prop-card h3 { letter-spacing: -0.3px; }
+
+
+/* ── CONTACT REACH BLOCK ── */
+.contact-reach { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; }
+
+.contact-email-btn {
+  display: flex; align-items: center; gap: 16px;
+  background: linear-gradient(135deg, rgba(0,168,181,0.1), rgba(0,91,102,0.08));
+  border: 1.5px solid rgba(0,168,181,0.3);
+  border-radius: 16px; padding: 18px 22px;
+  text-decoration: none; transition: all 0.25s;
+  box-shadow: 0 2px 12px rgba(0,168,181,0.08);
+}
+.contact-email-btn:hover {
+  background: linear-gradient(135deg, rgba(0,168,181,0.18), rgba(0,91,102,0.14));
+  border-color: rgba(0,168,181,0.55);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,168,181,0.15);
+}
+.contact-email-icon {
+  width: 48px; height: 48px; border-radius: 13px; flex-shrink: 0;
+  background: var(--turquoise); color: #FFFFFF;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,168,181,0.35);
+}
+.contact-email-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 2.5px;
+  text-transform: uppercase; color: var(--turquoise); margin-bottom: 4px;
+}
+.contact-email-value {
+  font-size: 14px; font-weight: 700; color: var(--deep-ocean);
+  letter-spacing: -0.2px;
+}
+
+.contact-wa-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: #25D366; color: #FFFFFF;
+  font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 16px 28px; border-radius: 50px; text-decoration: none;
+  box-shadow: 0 6px 20px rgba(37,211,102,0.35);
+  transition: transform 0.2s, box-shadow 0.2s;
+  align-self: flex-start;
+}
+.contact-wa-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(37,211,102,0.45); }
+
+.contact-qr-wrap {
+  display: flex; align-items: center; gap: 18px;
+  background: rgba(0,168,181,0.06);
+  border: 1px solid rgba(0,168,181,0.15);
+  border-radius: 16px; padding: 18px 22px;
+}
+.contact-qr-wrap img {
+  width: 88px; height: 88px; flex-shrink: 0;
+  background: #FFFFFF; border-radius: 10px; padding: 6px;
+  box-shadow: 0 4px 14px rgba(0,43,48,0.12);
+}
+.contact-qr-title {
+  font-size: 14px; font-weight: 800; color: var(--deep-ocean); margin-bottom: 5px;
+}
+.contact-qr-sub {
+  font-size: 12px; color: #5A7174; line-height: 1.5;
+}
 
 </style>
 </head>
@@ -745,27 +807,41 @@ footer {
         </div>
       </div>
 
-      <div class="social-links">
-        <a href="#" class="social-btn">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-        </a>
-        <a href="#" class="social-btn">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
-        </a>
-      </div>
+      <div class="contact-reach">
 
-      <!-- WhatsApp QR Code -->
-      <div style="margin-top:36px; padding:24px; background:#F0FAFB; border-radius:20px; border:1px solid rgba(0,168,181,0.15); display:flex; align-items:center; gap:24px;">
-        <div style="flex-shrink:0;">
-          <img src="data:image/png;base64,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" alt="Scan to WhatsApp" 
-               style="width:110px; height:110px; border-radius:12px; padding:8px; background:#FFFFFF; box-shadow:0 4px 16px rgba(0,43,48,0.12); display:block;">
-        </div>
-        <div>
-          <div style="font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#00A8B5; margin-bottom:6px;">Quick Book</div>
-          <div style="font-family:'Playfair Display',serif; font-size:17px; font-weight:800; color:#002B30; margin-bottom:6px;">Scan to WhatsApp</div>
-          <div style="font-size:12px; color:#5A7174; line-height:1.6;">Point your phone camera at the QR code — opens a WhatsApp chat instantly. No need to type the number.</div>
-        </div>
-      </div>
+  <!-- Email — prominent -->
+  <a href="mailto:oceanescapeadventure@gmail.com" class="contact-email-btn">
+    <div class="contact-email-icon">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+        <polyline points="22,6 12,13 2,6"></polyline>
+      </svg>
+    </div>
+    <div>
+      <div class="contact-email-label">Email Us</div>
+      <div class="contact-email-value">oceanescapeadventure@gmail.com</div>
+    </div>
+  </a>
+
+  <!-- WhatsApp button -->
+  <a href="https://wa.me/971564004009" target="_blank" class="contact-wa-btn">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+      <path d="M12 0C5.373 0 0 5.373 0 12c0 2.107.549 4.09 1.51 5.817L0 24l6.336-1.51A11.96 11.96 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.89 0-3.663-.518-5.18-1.42l-.37-.22-3.836.913.929-3.742-.24-.386A9.957 9.957 0 012 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/>
+    </svg>
+    Chat on WhatsApp
+  </a>
+
+  <!-- QR Code -->
+  <div class="contact-qr-wrap">
+    <img src="data:image/png;base64,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" alt="Scan to WhatsApp">
+    <div class="contact-qr-text">
+      <div class="contact-qr-title">Scan to Book</div>
+      <div class="contact-qr-sub">Opens WhatsApp instantly — no number needed</div>
+    </div>
+  </div>
+
+</div>
     </div>
     
         <div class="map-card" style="
