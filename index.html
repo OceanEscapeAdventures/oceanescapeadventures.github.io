@@ -378,6 +378,37 @@ footer {
   font-size: 12px; color: #5A7174; line-height: 1.5;
 }
 
+
+/* ── FOOTER TAGLINES ── */
+.footer-tagline-block {
+  text-align: center;
+  padding: 24px 0 8px;
+}
+.footer-tagline-main {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(22px, 3vw, 36px);
+  font-weight: 700;
+  font-style: italic;
+  color: var(--turquoise);
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
+  text-shadow: 0 0 40px rgba(0,168,181,0.4);
+}
+.footer-tagline-sub {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 28px;
+}
+.footer-divider-line {
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0,168,181,0.5), transparent);
+  margin: 0 auto;
+}
+
 </style>
 </head>
 <body>
@@ -906,6 +937,12 @@ footer {
       <a href="#packages">Packages</a>
       <a href="#about">Our Boat</a>
       <a href="#contact">Contact</a>
+    </div>
+    <!-- Tagline block -->
+    <div class="footer-tagline-block">
+      <div class="footer-tagline-main">Memories that last a lifetime</div>
+      <div class="footer-tagline-sub">RIDE THE GULF &nbsp;·&nbsp; CHASE THE SUN</div>
+      <div class="footer-divider-line"></div>
     </div>
     <div class="footer-meta">📍 Marasy, Al Bateen, Abu Dhabi &nbsp;·&nbsp; ✉️ oceanescapeadventure@gmail.com &nbsp;·&nbsp; © 2025 Ocean Escape Adventures</div>
   </div>
