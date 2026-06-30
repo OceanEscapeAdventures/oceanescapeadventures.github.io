@@ -219,11 +219,40 @@ section { padding: 100px 5%; }
 .feedback-section { background: var(--deep-ocean); color: var(--pure-white); position: relative; overflow: hidden; padding-top: 0; }
 .feedback-section .section-title { color: var(--pure-white); }
 .feedback-section .section-subtitle { color: var(--crystal-cyan); opacity: 0.85; }
-.feedback-card { max-width: 760px; margin: 0 auto; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 24px; padding: 16px; backdrop-filter: blur(10px); position: relative; z-index: 10; box-shadow: 0 20px 50px rgba(0,43,48,0.3); }
-.feedback-card iframe { width: 100%; min-height: 720px; border: 0; border-radius: 14px; background: #fff; display: block; }
+.feedback-card { max-width: 760px; margin: 0 auto; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 24px; padding: 36px; backdrop-filter: blur(10px); position: relative; z-index: 10; box-shadow: 0 20px 50px rgba(0,43,48,0.3); overflow: hidden; }
 .feedback-fallback { text-align: center; padding: 40px 20px; }
 .feedback-fallback a { color: var(--turquoise); font-weight: 700; text-decoration: none; }
-@media (max-width:600px){ .feedback-card { padding: 8px; } }
+.fb-field { margin-bottom: 20px; text-align: left; }
+.fb-field label { display: block; font-size: 13px; font-weight: 600; color: var(--crystal-cyan); margin-bottom: 7px; letter-spacing: 0.3px; }
+.fb-field input, .fb-field textarea { width: 100%; box-sizing: border-box; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); border-radius: 12px; padding: 13px 16px; color: #fff; font-size: 15px; font-family: inherit; transition: border-color 0.2s, background 0.2s; }
+.fb-field input::placeholder, .fb-field textarea::placeholder { color: rgba(255,255,255,0.4); }
+.fb-field input:focus, .fb-field textarea:focus { outline: none; border-color: var(--turquoise); background: rgba(255,255,255,0.12); }
+.fb-field textarea { resize: vertical; min-height: 110px; }
+.fb-stars { display: flex; gap: 8px; flex-direction: row-reverse; justify-content: flex-end; }
+.fb-stars input { display: none; }
+.fb-stars label { font-size: 34px; color: rgba(255,255,255,0.25); cursor: pointer; transition: color 0.15s; margin: 0; }
+.fb-stars label:hover, .fb-stars label:hover ~ label, .fb-stars input:checked ~ label { color: var(--gold-accent, #D4AF37); }
+.fb-submit { width: 100%; border: 0; cursor: pointer; padding: 15px; font-size: 16px; font-weight: 700; border-radius: 12px; background: var(--turquoise); color: var(--deep-ocean); letter-spacing: 0.5px; transition: background 0.2s, transform 0.1s; }
+.fb-submit:hover { background: var(--crystal-cyan); }
+.fb-submit:active { transform: scale(0.98); }
+.fb-submit:disabled { opacity: 0.6; cursor: default; }
+.fb-thankyou { text-align: center; padding: 30px 20px; }
+.fb-thankyou h3 { color: #fff; font-size: 24px; margin: 0 0 10px; }
+.fb-thankyou p { color: var(--crystal-cyan); margin: 0; }
+.fb-required { color: var(--coral-accent); }
+/* Wave transition overlay */
+.wave-overlay { position: absolute; inset: 0; z-index: 30; pointer-events: none; opacity: 0; }
+.wave-overlay.active { opacity: 1; }
+.wave-water { position: absolute; left: 0; right: 0; bottom: 0; height: 0; background: linear-gradient(180deg, var(--turquoise) 0%, var(--sea-teal, #00A8B5) 60%, var(--deep-ocean) 100%); }
+.wave-overlay.active .wave-water { animation: waveWash 1.6s cubic-bezier(0.45,0,0.25,1) forwards; }
+.wave-svg { position: absolute; left: 0; width: 100%; height: 40px; transform: translateY(-99%); }
+@keyframes waveWash {
+  0% { height: 0; }
+  45% { height: 115%; }
+  55% { height: 115%; }
+  100% { height: 0; }
+}
+@media (max-width:600px){ .feedback-card { padding: 22px 18px; } }
 .testimonial-card { flex: 1 1 300px; max-width: 380px; background: rgba(255, 255, 255, 0.06); padding: 40px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(10px); }
 .stars { color: var(--gold-premium); margin-bottom: 20px; display: flex; gap: 4px; }
 .testimonial-card p { font-size: 15px; color: var(--crystal-cyan); opacity: 0.9; margin-bottom: 25px; line-height: 1.7; font-style: italic; }
@@ -846,24 +875,115 @@ footer {
       <p style="margin:0 0 18px; color:var(--crystal-cyan); opacity:0.9;">Tap below to open our quick feedback form.</p>
       <button type="button" class="package-btn" id="openFeedbackForm" style="border:0; cursor:pointer; padding:14px 32px; font-size:15px;">Open Feedback Form</button>
     </div>
-    <!-- GOOGLE_FORM_EMBED: src injected on click, not on page load -->
-    <iframe id="feedbackFrame" data-src="https://docs.google.com/forms/d/e/1FAIpQLSeO2ttuPksJj6Xm4JowoyO_JHb138B337XH8wh-p6Wa9hC2cg/viewform?embedded=true" title="Share Your Experience – Ocean Escape Adventures" style="display:none;">Loading…</iframe>
+
+    <div id="feedbackFormWrap" style="display:none;">
+      <form id="feedbackForm" novalidate>
+        <div class="fb-field">
+          <label>Name <span class="fb-required">*</span></label>
+          <input type="text" name="name" placeholder="Your name" required maxlength="80">
+        </div>
+        <div class="fb-field">
+          <label>Country</label>
+          <input type="text" name="country" placeholder="Where are you visiting from?" maxlength="60">
+        </div>
+        <div class="fb-field">
+          <label>Your Rating <span class="fb-required">*</span></label>
+          <div class="fb-stars">
+            <input type="radio" name="rating" value="5" id="fbstar5"><label for="fbstar5" title="Excellent">&#9733;</label>
+            <input type="radio" name="rating" value="4" id="fbstar4"><label for="fbstar4" title="Great">&#9733;</label>
+            <input type="radio" name="rating" value="3" id="fbstar3"><label for="fbstar3" title="Good">&#9733;</label>
+            <input type="radio" name="rating" value="2" id="fbstar2"><label for="fbstar2" title="Fair">&#9733;</label>
+            <input type="radio" name="rating" value="1" id="fbstar1"><label for="fbstar1" title="Poor">&#9733;</label>
+          </div>
+        </div>
+        <div class="fb-field">
+          <label>Your Experience <span class="fb-required">*</span></label>
+          <textarea name="comment" placeholder="Tell us about your trip..." required maxlength="1500"></textarea>
+        </div>
+        <button type="submit" class="fb-submit" id="fbSubmit">Submit Feedback</button>
+        <p id="fbError" style="color:var(--coral-accent); font-size:13px; margin:12px 0 0; display:none; text-align:center;"></p>
+      </form>
+    </div>
+
+    <div class="fb-thankyou" id="fbThankyou" style="display:none;">
+      <h3>Thank you! &#128591;</h3>
+      <p>Your feedback means the world to us. We hope to welcome you aboard again soon.</p>
+    </div>
+
+    <div class="wave-overlay" id="waveOverlay">
+      <div class="wave-water">
+        <svg class="wave-svg" viewBox="0 0 1200 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0,40 C150,10 350,10 600,25 C850,40 1050,10 1200,20 L1200,40 Z" fill="var(--turquoise)"></path>
+        </svg>
+      </div>
+    </div>
   </div>
 </section>
 <script>
 (function(){
+  // Google Form submission endpoint + field entry IDs.
+  // REPLACE the entry IDs below with the real ones from your pre-filled link.
+  var GFORM_ACTION = "https://docs.google.com/forms/d/e/1FAIpQLSeO2ttuPksJj6Xm4JowoyO_JHb138B337XH8wh-p6Wa9hC2cg/formResponse";
+  var ENTRY = {
+    name:    "entry.306090736",
+    country: "entry.1130349253",
+    rating:  "entry.1200644959",
+    comment: "entry.1418965558"
+  };
+
+  var cta=document.getElementById('feedbackCta');
+  var wrap=document.getElementById('feedbackFormWrap');
+  var overlay=document.getElementById('waveOverlay');
+  var form=document.getElementById('feedbackForm');
+  var thankyou=document.getElementById('fbThankyou');
+  var errEl=document.getElementById('fbError');
+
   function openFeedback(){
-    var f=document.getElementById('feedbackFrame');
-    var cta=document.getElementById('feedbackCta');
-    if(f && !f.src){ f.src=f.dataset.src; f.style.display='block'; }
-    if(cta){ cta.style.display='none'; }
+    if(wrap.style.display==='block') return;
+    if(cta) cta.style.display='none';
+    // Play wave transition, then reveal form
+    overlay.classList.add('active');
+    setTimeout(function(){ wrap.style.display='block'; }, 800);
+    setTimeout(function(){ overlay.classList.remove('active'); }, 1700);
   }
+
   var btn=document.getElementById('openFeedbackForm');
-  if(btn){ btn.addEventListener('click', openFeedback); }
-  // "Leave a Review" links/buttons also trigger reveal after scrolling
-  document.querySelectorAll('a[href="#feedback"], #leaveReviewBtn').forEach(function(el){
-    el.addEventListener('click', function(){ setTimeout(openFeedback, 400); });
+  if(btn) btn.addEventListener('click', openFeedback);
+  document.querySelectorAll('a[href="#feedback"]').forEach(function(el){
+    el.addEventListener('click', function(){ setTimeout(openFeedback, 500); });
   });
+
+  if(form){
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      errEl.style.display='none';
+      var data=new FormData(form);
+      var name=(data.get('name')||'').trim();
+      var rating=data.get('rating');
+      var comment=(data.get('comment')||'').trim();
+      if(!name || !rating || !comment){
+        errEl.textContent='Please fill in your name, a rating, and your experience.';
+        errEl.style.display='block';
+        return;
+      }
+      var submitBtn=document.getElementById('fbSubmit');
+      submitBtn.disabled=true; submitBtn.textContent='Submitting...';
+
+      // Build payload mapped to Google Form entry IDs
+      var body=new URLSearchParams();
+      body.append(ENTRY.name, name);
+      body.append(ENTRY.country, (data.get('country')||'').trim());
+      body.append(ENTRY.rating, rating);
+      body.append(ENTRY.comment, comment);
+
+      // Fire-and-forget POST (Google blocks readable cross-origin response)
+      fetch(GFORM_ACTION, { method:'POST', mode:'no-cors', body: body })
+        .finally(function(){
+          wrap.style.display='none';
+          thankyou.style.display='block';
+        });
+    });
+  }
 })();
 </script>
 
