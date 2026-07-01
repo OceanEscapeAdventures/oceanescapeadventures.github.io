@@ -522,6 +522,28 @@ html[dir="rtl"] .lang-switch{direction:ltr;}
 @keyframes seaSplash{0%{opacity:0;transform:scale(0.2)}12%{opacity:0.9;transform:scale(0.55)}55%{opacity:0.4;transform:scale(1.15)}100%{opacity:0;transform:scale(1.7)}}
 @keyframes seaSplashRing{0%{opacity:0;transform:scale(0.25)}18%{opacity:0.7}100%{opacity:0;transform:scale(1.9)}}
 @media (prefers-reduced-motion: reduce){#booking .sea-anim{display:none;}}
+
+/* ═══════════════ USD PRICE HINTS ═══════════════ */
+.usd-hint{font-size:12.5px;color:var(--sea-teal);opacity:0.85;margin-top:2px;font-weight:600;letter-spacing:0.2px;}
+
+/* ═══════════════ SUNSET WIDGET ═══════════════ */
+.sun-pill{display:inline-flex;align-items:center;gap:8px;margin:16px auto 0;padding:9px 20px;border-radius:999px;
+  background:rgba(0,43,48,0.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  border:1px solid rgba(212,175,55,0.45);color:#fff;font-size:14px;box-shadow:0 6px 20px rgba(0,20,24,0.25);}
+.sun-pill b{color:var(--gold-premium);font-weight:700;}
+
+/* ═══════════════ FAQ ACCORDION ═══════════════ */
+#faq .section-title{color:#ffffff;text-shadow:0 2px 6px rgba(0,0,0,0.55);}
+#faq .section-tag span{text-shadow:0 1px 4px rgba(0,0,0,0.55);}
+.faq-wrap{max-width:860px;margin:0 auto;padding:0 20px 10px;}
+.faq-item{background:rgba(0,43,48,0.62);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border:1px solid rgba(224,247,250,0.18);border-radius:14px;margin-bottom:12px;overflow:hidden;}
+.faq-item summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:14px;
+  padding:18px 22px;color:#fff;font-weight:600;font-size:15.5px;}
+.faq-item summary::-webkit-details-marker{display:none;}
+.faq-item summary::after{content:"+";font-size:22px;font-weight:400;color:var(--turquoise);transition:transform .25s;flex-shrink:0;line-height:1;}
+.faq-item[open] summary::after{transform:rotate(45deg);}
+.faq-item p{margin:0;padding:0 22px 18px;color:var(--crystal-cyan);opacity:0.92;font-size:14.5px;line-height:1.7;}
 </style></head>
 <body>
 <nav>
@@ -535,7 +557,7 @@ html[dir="rtl"] .lang-switch{direction:ltr;}
 <a href="#packages"><span data-i18n="k3">Packages</span></a>
 <a href="#about"><span data-i18n="k4">The Boat</span></a>
 <a href="#feedback"><span data-i18n="k5">Reviews</span></a>
-<a href="#booking"><span data-i18n="nav_book">Book</span></a><a href="#contact"><span data-i18n="k6">Contact</span></a>
+<a href="gallery.html"><span data-i18n="nav_gallery">Gallery</span></a><a href="#booking"><span data-i18n="nav_book">Book</span></a><a href="#contact"><span data-i18n="k6">Contact</span></a>
 </div>
 <div class="lang-switch"><button class="active" data-lang="ar">ع</button><button data-lang="en">EN</button></div><a class="nav-cta" href="#booking" data-book-scroll="1"><span data-i18n="k7">Book Private Tour</span></a>
 </nav>
@@ -659,7 +681,7 @@ html[dir="rtl"] .lang-switch{direction:ltr;}
 <li><svg fill="none" height="16" stroke="currentColor" stroke-width="3" viewbox="0 0 24 24" width="16"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="k46">Group Size: Up to 7 Guests</span></li>
 </ul>
 <div class="package-price-wrap">
-<div><div class="price-lbl"><span data-i18n="k47">Total Price</span></div><div class="price-val"><span data-i18n="k48">AED 399</span></div></div>
+<div><div class="price-lbl"><span data-i18n="k47">Total Price</span></div><div class="price-val"><span data-i18n="k48">AED 399</span></div><div class="usd-hint" data-aed="399"></div></div>
 <a class="package-btn" href="https://wa.me/971564004009?text=Hi%2C%20I%27m%20interested%20in%20the%20Swimming%20Tour" target="_blank" data-pkg-key="k41"><span data-i18n="k49">Select Package</span></a>
 </div>
 </div>
@@ -682,7 +704,7 @@ html[dir="rtl"] .lang-switch{direction:ltr;}
 </ul>
 <p class="pkg-footnote"><span data-i18n="k58">* Return pick-up is subject to boat availability and may involve a short wait during busy periods.</span></p>
 <div class="package-price-wrap">
-<div><div class="price-lbl"><span data-i18n="k59">Total Price</span></div><div class="price-val"><span data-i18n="k60">AED 399</span></div></div>
+<div><div class="price-lbl"><span data-i18n="k59">Total Price</span></div><div class="price-val"><span data-i18n="k60">AED 399</span></div><div class="usd-hint" data-aed="399"></div></div>
 <a class="package-btn" href="https://wa.me/971564004009?text=Hi%2C%20I%27m%20interested%20in%20Boat%20Pick-Up%20%26%20Drop" target="_blank" data-pkg-key="k51"><span data-i18n="k61">Select Package</span></a>
 </div>
 </div>
@@ -705,7 +727,7 @@ html[dir="rtl"] .lang-switch{direction:ltr;}
 </ul>
 <div class="pkg-addon"><span data-i18n="k70">Optional add-ons at extra cost:</span> <strong><span data-i18n="k71">BBQ</span></strong> <span data-i18n="k72">and water sports</span> <strong><span data-i18n="k73">(Kayak, Banana Boat &amp; Donut)</span></strong><span data-i18n="k74">.</span></div>
 <div class="package-price-wrap">
-<div><div class="price-lbl"><span data-i18n="k75">Total Price</span></div><div class="price-val"><span data-i18n="k76">AED 799</span></div></div>
+<div><div class="price-lbl"><span data-i18n="k75">Total Price</span></div><div class="price-val"><span data-i18n="k76">AED 799</span></div><div class="usd-hint" data-aed="799"></div></div>
 <a class="package-btn" href="https://wa.me/971564004009?text=Hi%2C%20I%27m%20interested%20in%20Pick-Up%20%26%20Drop%20with%20Captain" target="_blank" data-pkg-key="k63"><span data-i18n="k77">Select Package</span></a>
 </div>
 </div>
@@ -726,7 +748,7 @@ html[dir="rtl"] .lang-switch{direction:ltr;}
 <li><svg fill="none" height="16" stroke="currentColor" stroke-width="3" viewbox="0 0 24 24" width="16"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="k84">Group Size: Up to 7 Guests</span></li>
 </ul>
 <div class="package-price-wrap">
-<div><div class="price-lbl"><span data-i18n="k85">Total Price</span></div><div class="price-val"><span data-i18n="k86">AED 999</span></div></div>
+<div><div class="price-lbl"><span data-i18n="k85">Total Price</span></div><div class="price-val"><span data-i18n="k86">AED 999</span></div><div class="usd-hint" data-aed="999"></div></div>
 <a class="package-btn" href="https://wa.me/971564004009?text=Hi%2C%20I%27m%20interested%20in%20the%20Island%20Activities%20Package" target="_blank" data-pkg-key="k79"><span data-i18n="k87">Select Package</span></a>
 </div>
 </div>
@@ -749,7 +771,7 @@ html[dir="rtl"] .lang-switch{direction:ltr;}
 </ul>
 <div class="pkg-addon"><span data-i18n="k96">Optional: add a beachside</span> <strong><span data-i18n="k97">BBQ with Water &amp; Juice</span></strong> <span data-i18n="k98">for just</span> <strong><span data-i18n="k99">AED 200</span></strong><span data-i18n="k100">.</span></div>
 <div class="package-price-wrap">
-<div><div class="price-lbl"><span data-i18n="k101">Total Price</span></div><div class="price-val"><span data-i18n="k102">AED 1,499</span></div></div>
+<div><div class="price-lbl"><span data-i18n="k101">Total Price</span></div><div class="price-val"><span data-i18n="k102">AED 1,499</span></div><div class="usd-hint" data-aed="1499"></div></div>
 <a class="package-btn" href="https://wa.me/971564004009?text=Hi%2C%20I%27m%20interested%20in%20the%20Island%20Adventure%20Package" target="_blank" data-pkg-key="k90"><span data-i18n="k103">Select Package</span></a>
 </div>
 </div>
@@ -1031,6 +1053,7 @@ html[dir="rtl"] .lang-switch{direction:ltr;}
 <span class="section-tag" style="color: var(--turquoise);"><span data-i18n="bk_tag">Book Online</span></span>
 <h2 class="section-title"><span data-i18n="bk_title">Book &amp; Pay</span></h2>
 <p class="section-subtitle"><span data-i18n="bk_sub">Reserve your private boat tour and pay securely online — choose your package, pick a time, and confirm in minutes.</span></p>
+<div class="sun-pill" id="sunPill" hidden="">🌅 <span data-i18n="sun_label">Today's sunset in Abu Dhabi</span>: <b id="sunTime">—</b> · <span data-i18n="sun_cta">a perfect time for a sunset cruise</span></div>
 </div>
 <div id="zohoBookingsEmbed" style="max-width:920px;margin:0 auto;padding:0 20px;">
 <!-- ZOHO BOOKINGS EMBED GOES HERE:
@@ -1054,6 +1077,20 @@ html[dir="rtl"] .lang-switch{direction:ltr;}
 </div>
 <button class="package-btn" id="bkWaBtn" type="button" style="border:0;cursor:pointer;padding:14px 32px;font-size:15px;margin-top:6px;"><span data-i18n="bk_btn">Book via WhatsApp</span></button>
 </div>
+</div>
+</section>
+<section id="faq">
+<div class="section-header">
+<span class="section-tag" style="color: var(--turquoise);"><span data-i18n="faq_tag">Good to Know</span></span>
+<h2 class="section-title"><span data-i18n="faq_title">Frequently Asked Questions</span></h2>
+</div>
+<div class="faq-wrap">
+<details class="faq-item"><summary><span data-i18n="faq_q1">What's included in the price?</span></summary><p><span data-i18n="faq_a1">Everything listed in your package: certified captain, fuel, life jackets and equipment. No hidden fees — optional add-ons like BBQ or water sports are priced clearly.</span></p></details>
+<details class="faq-item"><summary><span data-i18n="faq_q2">How many guests can join?</span></summary><p><span data-i18n="faq_a2">Up to 7 guests per trip. While you're on board, the boat is exclusively yours — we never mix groups. Only on the Boat Pick-Up &amp; Drop package, the boat doesn't wait with you after drop-off: it returns to Marasy or serves other guests until you call for your return pick-up.</span></p></details>
+<details class="faq-item"><summary><span data-i18n="faq_q3">What should I bring?</span></summary><p><span data-i18n="faq_a3">Swimwear, a towel, sunscreen, sunglasses and a hat. We provide water, ice and all safety equipment.</span></p></details>
+<details class="faq-item"><summary><span data-i18n="faq_q4">Can children come along?</span></summary><p><span data-i18n="faq_a4">Absolutely — families are very welcome. Life jackets are provided for all ages, and our captain keeps the ride smooth and safe.</span></p></details>
+<details class="faq-item"><summary><span data-i18n="faq_q5">What happens if the weather is bad?</span></summary><p><span data-i18n="faq_a5">Your safety comes first. If sea conditions aren't suitable, we'll contact you to reschedule your trip to the next convenient date.</span></p></details>
+<details class="faq-item"><summary><span data-i18n="faq_q6">How do I book and pay?</span></summary><p><span data-i18n="faq_a6">Choose your package and tap Book via WhatsApp — we'll confirm your date, time and details in minutes and share payment options with you directly. Please note all payments are made in AED (UAE dirham); the USD figures shown are approximate references only — your bank or card issuer sets the final conversion rate and any fee.</span></p></details>
 </div>
 </section>
 <section id="contact">
@@ -1164,7 +1201,7 @@ html[dir="rtl"] .lang-switch{direction:ltr;}
 <a href="#packages"><span data-i18n="k188">Packages</span></a>
 <a href="#about"><span data-i18n="k189">Our Boat</span></a>
 <a href="#feedback"><span data-i18n="k190">Reviews</span></a>
-<a href="#contact"><span data-i18n="k191">Contact</span></a>
+<a href="gallery.html"><span data-i18n="nav_gallery">Gallery</span></a><a href="#contact"><span data-i18n="k191">Contact</span></a>
 </div>
 <!-- Tagline block -->
 <div class="footer-tagline-block">
@@ -1336,6 +1373,69 @@ document.addEventListener('DOMContentLoaded',function(){
     setTimeout(splash,1800+Math.random()*4200);
   }
   setTimeout(splash,1500);
+})();
+</script>
+<script>
+/* i18n keys for FAQ, gallery link and sunset widget */
+(function(){
+  if(!window.I18N) return;
+  Object.assign(window.I18N.en,{
+    nav_gallery:"Gallery", faq_tag:"Good to Know", faq_title:"Frequently Asked Questions",
+    faq_q1:"What's included in the price?", faq_a1:"Everything listed in your package: certified captain, fuel, life jackets and equipment. No hidden fees — optional add-ons like BBQ or water sports are priced clearly.",
+    faq_q2:"How many guests can join?", faq_a2:"Up to 7 guests per trip. While you're on board, the boat is exclusively yours — we never mix groups. Only on the Boat Pick-Up & Drop package, the boat doesn't wait with you after drop-off: it returns to Marasy or serves other guests until you call for your return pick-up.",
+    faq_q3:"What should I bring?", faq_a3:"Swimwear, a towel, sunscreen, sunglasses and a hat. We provide water, ice and all safety equipment.",
+    faq_q4:"Can children come along?", faq_a4:"Absolutely — families are very welcome. Life jackets are provided for all ages, and our captain keeps the ride smooth and safe.",
+    faq_q5:"What happens if the weather is bad?", faq_a5:"Your safety comes first. If sea conditions aren't suitable, we'll contact you to reschedule your trip to the next convenient date.",
+    faq_q6:"How do I book and pay?", faq_a6:"Choose your package and tap Book via WhatsApp — we'll confirm your date, time and details in minutes and share payment options with you directly. Please note all payments are made in AED (UAE dirham); the USD figures shown are approximate references only — your bank or card issuer sets the final conversion rate and any fee.",
+    sun_label:"Today's sunset in Abu Dhabi", sun_cta:"a perfect time for a sunset cruise"});
+  Object.assign(window.I18N.ar,{
+    nav_gallery:"المعرض", faq_tag:"معلومات مفيدة", faq_title:"الأسئلة الشائعة",
+    faq_q1:"ماذا يشمل السعر؟", faq_a1:"كل ما هو مذكور في باقتك: قبطان معتمد، الوقود، سترات النجاة والمعدات. لا رسوم خفية — الإضافات الاختيارية مثل الشواء أو الرياضات المائية بأسعار واضحة.",
+    faq_q2:"كم عدد الضيوف المسموح؟", faq_a2:"حتى 7 ضيوف في الرحلة. أثناء وجودك على متن القارب، يكون القارب لك وحدك — لا نجمع بين المجموعات أبداً. فقط في باقة التوصيل والإنزال بالقارب، لا ينتظر القارب معك بعد الإنزال: بل يعود إلى مراسي أو يخدم ضيوفاً آخرين حتى تتصل بنا لاصطحابك في رحلة العودة.",
+    faq_q3:"ماذا يجب أن أحضر معي؟", faq_a3:"ملابس السباحة، منشفة، واقي الشمس، نظارة شمسية وقبعة. نوفر الماء والثلج وجميع معدات السلامة.",
+    faq_q4:"هل يمكن اصطحاب الأطفال؟", faq_a4:"بالتأكيد — العائلات موضع ترحيب. سترات النجاة متوفرة لجميع الأعمار، وقبطاننا يحرص على رحلة سلسة وآمنة.",
+    faq_q5:"ماذا يحدث إذا كان الطقس سيئاً؟", faq_a5:"سلامتك أولاً. إذا لم تكن حالة البحر مناسبة، سنتواصل معك لإعادة جدولة رحلتك إلى أقرب موعد يناسبك.",
+    faq_q6:"كيف أحجز وأدفع؟", faq_a6:"اختر باقتك واضغط \"احجز عبر واتساب\" — نؤكد التاريخ والوقت والتفاصيل خلال دقائق ونشاركك طرق الدفع مباشرة. يُرجى العلم أن جميع المدفوعات تتم بالدرهم الإماراتي؛ والأسعار المعروضة بالدولار الأمريكي هي للإشارة التقريبية فقط — والبنك أو مُصدر بطاقتك هو من يحدد سعر التحويل النهائي وأي رسوم.",
+    sun_label:"غروب اليوم في أبوظبي", sun_cta:"وقت مثالي لرحلة الغروب"});
+})();
+</script>
+<script>
+/* Today's sunset time for Abu Dhabi (computed in-browser, no API) */
+(function(){
+  var el=document.getElementById('sunTime'), pill=document.getElementById('sunPill');
+  if(!el||!pill) return;
+  var lat=24.4539, lng=54.3773, tz=4, rad=Math.PI/180;
+  function sunsetHour(d){
+    var N=Math.floor((d-new Date(Date.UTC(d.getFullYear(),0,0)))/864e5);
+    var lngHour=lng/15, t=N+((18-lngHour)/24);
+    var M=(0.9856*t)-3.289;
+    var L=M+(1.916*Math.sin(M*rad))+(0.020*Math.sin(2*M*rad))+282.634; L=(L%360+360)%360;
+    var RA=Math.atan(0.91764*Math.tan(L*rad))/rad; RA=(RA%360+360)%360;
+    RA=(RA+(Math.floor(L/90)*90-Math.floor(RA/90)*90))/15;
+    var sinDec=0.39782*Math.sin(L*rad), cosDec=Math.cos(Math.asin(sinDec));
+    var cosH=(Math.cos(90.833*rad)-(sinDec*Math.sin(lat*rad)))/(cosDec*Math.cos(lat*rad));
+    if(cosH>1||cosH<-1) return null;
+    var H=(Math.acos(cosH)/rad)/15;
+    var T=H+RA-(0.06571*t)-6.622;
+    return (((T-lngHour)%24+24)%24+tz)%24;
+  }
+  var h=sunsetHour(new Date());
+  if(h===null) return;
+  var hh=Math.floor(h), mm=Math.round((h-hh)*60);
+  if(mm===60){mm=0;hh=(hh+1)%24;}
+  var h12=((hh+11)%12)+1;
+  el.textContent=h12+':'+(mm<10?'0':'')+mm+' '+(hh>=12?'PM':'AM');
+  pill.hidden=false;
+})();
+</script>
+<script>
+/* USD price hints — AED is pegged to USD at 3.6725, so this is exact */
+(function(){
+  var PEG=3.6725;
+  document.querySelectorAll('.usd-hint[data-aed]').forEach(function(el){
+    var aed=parseFloat(el.getAttribute('data-aed'));
+    if(aed>0) el.textContent='≈ $'+Math.round(aed/PEG)+' USD';
+  });
 })();
 </script>
 </body>
