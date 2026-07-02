@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title data-en="Wave Runner — Ocean Escape Adventures" data-ar="سباق الأمواج — Ocean Escape Adventures">سباق الأمواج — Ocean Escape Adventures</title>
+<link href="favicon.ico" rel="icon" sizes="48x48"/>
+<link href="assets/favicon-32.png" rel="icon" sizes="32x32" type="image/png"/>
+<link href="assets/favicon-16.png" rel="icon" sizes="16x16" type="image/png"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet"/>
+<style>
+:root{--deep-ocean:#002B30;--sea-teal:#005B66;--turquoise:#00A8B5;--crystal-cyan:#E0F7FA;--gold:#D4AF37;--coral:#FF6B4A;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;
+  background:linear-gradient(to bottom,#2e5f66 0%,var(--deep-ocean) 100%);color:#fff;
+  font-family:'Montserrat',sans-serif;padding:30px 16px;text-align:center;}
+html[dir="rtl"] body{font-family:'Tajawal','Segoe UI',Tahoma,sans-serif;}
+h1{font-size:clamp(24px,4vw,34px);}
+p.sub{color:var(--crystal-cyan);opacity:0.85;font-size:15px;max-width:520px;}
+.hint{font-size:13px;color:var(--gold);letter-spacing:0.5px;}
+#wrap{width:min(720px,96vw);}
+canvas{width:100%;height:auto;display:block;border-radius:16px;border:1px solid rgba(224,247,250,0.25);
+  box-shadow:0 18px 50px rgba(0,15,18,0.5);cursor:pointer;touch-action:manipulation;}
+.home{display:inline-block;margin-top:4px;padding:12px 30px;border-radius:999px;background:var(--turquoise);
+  color:#fff;text-decoration:none;font-weight:700;font-size:14px;letter-spacing:1px;transition:background .2s;}
+.home:hover{background:var(--sea-teal);}
+.lang-switch{position:fixed;top:16px;inset-inline-end:16px;display:inline-flex;gap:4px;border:1px solid rgba(0,168,181,0.5);
+  border-radius:999px;padding:3px;background:rgba(255,255,255,0.08);direction:ltr;}
+.lang-switch button{font:inherit;font-weight:700;font-size:13px;cursor:pointer;border:0;background:transparent;color:#fff;padding:6px 10px;border-radius:999px;}
+.lang-switch button.active{background:var(--turquoise);}
+.speeds{display:flex;gap:8px;justify-content:center;}
+.speeds button{font:inherit;font-size:13px;font-weight:700;cursor:pointer;border:1px solid rgba(0,168,181,0.5);
+  background:rgba(255,255,255,0.08);color:#fff;padding:8px 18px;border-radius:999px;transition:background .2s;}
+.speeds button.active{background:var(--turquoise);border-color:var(--turquoise);}
+</style>
+</head>
+<body>
+<div class="lang-switch"><button data-lang="ar" class="active">ع</button><button data-lang="en">EN</button></div>
+<h1 data-en="⚓ Wave Runner" data-ar="⚓ سباق الأمواج">⚓ سباق الأمواج</h1>
+<p class="sub" data-en="A little ocean game while you dream up your next trip — take the helm and jump the buoys!"
+   data-ar="لعبة بحرية صغيرة بينما تخطط لرحلتك القادمة — تولَّ القيادة واقفز فوق العوامات!">لعبة بحرية صغيرة بينما تخطط لرحلتك القادمة — تولَّ القيادة واقفز فوق العوامات!</p>
+<div id="wrap"><canvas id="game" width="720" height="240" dir="ltr"></canvas></div>
+<div class="hint" data-en="Tap the water or press Space to jump the buoys" data-ar="انقر على الماء أو اضغط مفتاح المسافة للقفز فوق العوامات">انقر على الماء أو اضغط مفتاح المسافة للقفز فوق العوامات</div>
+<div class="speeds" id="speeds">
+<button data-speed="calm" data-en="🐢 Calm" data-ar="🐢 هادئ">🐢 هادئ</button>
+<button data-speed="cruise" data-en="⛵ Cruise" data-ar="⛵ إبحار">⛵ إبحار</button>
+<button data-speed="turbo" data-en="🚤 Turbo" data-ar="🚤 سريع">🚤 سريع</button>
+</div>
+<a class="home" href="/" data-en="← Back to Home" data-ar="← العودة للرئيسية">← العودة للرئيسية</a>
+<script>
+(function(){
+  /* ── language ── */
+  var lang='ar';
+  try{lang=localStorage.getItem('oea_lang')||'ar';}catch(e){}
+  var T={
+    en:{score:'SCORE',best:'BEST',start:'Tap or press Space to start',over:'Splash! Tap to try again'},
+    ar:{score:'النقاط',best:'الأفضل',start:'انقر أو اضغط المسافة للبدء',over:'اصطدمت! انقر للمحاولة مجدداً'}
+  };
+  function setLang(l){
+    lang=l;
+    document.documentElement.lang=l;
+    document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    document.querySelectorAll('[data-en]').forEach(function(el){
+      var v=el.getAttribute(l==='ar'?'data-ar':'data-en');
+      if(v!==null){ if(el.tagName==='TITLE'){document.title=v;} else {el.textContent=v;} }
+    });
+    document.querySelectorAll('.lang-switch button').forEach(function(b){b.classList.toggle('active',b.getAttribute('data-lang')===l);});
+    try{localStorage.setItem('oea_lang',l);}catch(e){}
+  }
+  document.querySelectorAll('.lang-switch button').forEach(function(b){b.addEventListener('click',function(){setLang(b.getAttribute('data-lang'));});});
+  setLang(lang);
+
+  /* ── game ── */
+  var cv=document.getElementById('game'), cx=cv.getContext('2d');
+  var W=720,H=240,WATER=185;
+  var state='ready', t=0, speed, score, best=0, boat, obs, foam, gulls, lastSpawn;
+  try{best=parseInt(localStorage.getItem('oeaWaveBest')||'0',10)||0;}catch(e){}
+
+  /* speed modes */
+  var SPEEDS={
+    calm:  {base:2.6,ramp:0.0004,jump:-9.9,grav:0.40,hit:17},
+    cruise:{base:3.4,ramp:0.0007,jump:-9.5,grav:0.46,hit:21},
+    turbo: {base:4.4,ramp:0.001, jump:-9.2,grav:0.50,hit:24}};
+  var mode='calm';
+  try{ var m=localStorage.getItem('oeaWaveSpeed'); if(SPEEDS[m]) mode=m; }catch(e){}
+  var spBtns=document.querySelectorAll('#speeds button');
+  function applyMode(m){
+    mode=m;
+    try{localStorage.setItem('oeaWaveSpeed',m);}catch(e){}
+    spBtns.forEach(function(b){b.classList.toggle('active',b.getAttribute('data-speed')===m);});
+    reset(); state='ready';
+  }
+  spBtns.forEach(function(b){ b.addEventListener('click',function(){ applyMode(b.getAttribute('data-speed')); }); });
+  spBtns.forEach(function(b){ b.classList.toggle('active',b.getAttribute('data-speed')===mode); });
+
+  function reset(){
+    speed=SPEEDS[mode].base; score=0; t=0; lastSpawn=0;
+    boat={x:90,y:WATER,vy:0,jumping:false};
+    obs=[]; foam=[]; gulls=[{x:500,y:50,v:0.6},{x:200,y:80,v:0.45}];
+  }
+  reset();
+
+  function jump(){
+    if(state==='ready'){state='playing';return;}
+    if(state==='over'){reset();state='playing';return;}
+    if(!boat.jumping){boat.vy=SPEEDS[mode].jump;boat.jumping=true;}
+  }
+  cv.addEventListener('pointerdown',function(e){e.preventDefault();jump();});
+  document.addEventListener('keydown',function(e){
+    if(e.code==='Space'||e.code==='ArrowUp'){e.preventDefault();jump();}
+  });
+
+  function spawn(){
+    var type=Math.random()<0.65?'buoy':'tall';
+    obs.push({x:W+30,type:type,r:type==='buoy'?13:15,h:type==='buoy'?0:26});
+  }
+
+  function drawSun(){
+    var g=cx.createRadialGradient(560,70,10,560,70,60);
+    g.addColorStop(0,'#FFC24B'); g.addColorStop(1,'rgba(255,194,75,0)');
+    cx.fillStyle=g; cx.beginPath(); cx.arc(560,70,60,0,7); cx.fill();
+    cx.fillStyle='#F5A623'; cx.beginPath(); cx.arc(560,70,26,0,7); cx.fill();
+  }
+  function drawGulls(){
+    cx.strokeStyle='rgba(224,247,250,0.7)'; cx.lineWidth=2;
+    gulls.forEach(function(g){
+      g.x-=g.v; if(g.x<-20){g.x=W+20;g.y=40+Math.random()*60;}
+      var f=Math.sin(t/8+g.x)*3;
+      cx.beginPath(); cx.moveTo(g.x-8,g.y); cx.quadraticCurveTo(g.x-4,g.y-4-f,g.x,g.y);
+      cx.quadraticCurveTo(g.x+4,g.y-4-f,g.x+8,g.y); cx.stroke();
+    });
+  }
+  function drawWater(){
+    cx.fillStyle='#0E6E7A';
+    cx.beginPath(); cx.moveTo(0,WATER+14);
+    for(var x=0;x<=W;x+=20){ cx.lineTo(x,WATER+14+Math.sin((x+t*speed)/34)*4); }
+    cx.lineTo(W,H); cx.lineTo(0,H); cx.closePath(); cx.fill();
+    cx.strokeStyle='rgba(224,247,250,0.5)'; cx.lineWidth=2;
+    cx.beginPath();
+    for(var x2=0;x2<=W;x2+=8){ var y=WATER+14+Math.sin((x2+t*speed)/34)*4; if(x2===0)cx.moveTo(x2,y); else cx.lineTo(x2,y); }
+    cx.stroke();
+  }
+  function drawBoat(){
+    var y=boat.y;
+    cx.save(); cx.translate(boat.x,y);
+    if(!boat.jumping) cx.rotate(Math.sin(t/10)*0.04);
+    cx.fillStyle='#0B2239';
+    cx.beginPath(); cx.moveTo(-34,0); cx.lineTo(34,0); cx.lineTo(24,14); cx.lineTo(-28,14); cx.closePath(); cx.fill();
+    cx.fillRect(-14,-16,22,16);                     // cabin
+    cx.fillRect(-18,-24,32,4);                      // bimini top
+    cx.fillRect(-16,-20,3,6); cx.fillRect(11,-20,3,6);
+    cx.fillStyle='#F5A623'; cx.fillRect(-8,-12,10,8); // window glow
+    cx.restore();
+  }
+  function drawObs(){
+    obs.forEach(function(o){
+      cx.save(); cx.translate(o.x,WATER+10+Math.sin((o.x+t*speed)/34)*3);
+      if(o.type==='buoy'){
+        cx.fillStyle='#FF6B4A'; cx.beginPath(); cx.arc(0,-6,o.r,0,7); cx.fill();
+        cx.fillStyle='#fff'; cx.fillRect(-o.r,-9,o.r*2,5);
+      }else{
+        cx.fillStyle='#FF6B4A'; cx.beginPath(); cx.arc(0,-4,12,0,7); cx.fill();
+        cx.strokeStyle='#0B2239'; cx.lineWidth=3; cx.beginPath(); cx.moveTo(0,-14); cx.lineTo(0,-4-o.h+8); cx.stroke();
+        cx.fillStyle='#D4AF37'; cx.beginPath(); cx.moveTo(0,-4-o.h+8); cx.lineTo(14,-4-o.h+13); cx.lineTo(0,-4-o.h+18); cx.closePath(); cx.fill();
+      }
+      cx.restore();
+    });
+  }
+  function hud(){
+    var L=T[lang];
+    cx.fillStyle='rgba(224,247,250,0.95)'; cx.font='700 15px Montserrat,Tajawal,sans-serif';
+    cx.textAlign='left'; cx.fillText(L.score+': '+Math.floor(score),16,26);
+    cx.textAlign='right'; cx.fillText(L.best+': '+Math.max(best,Math.floor(score)),W-16,26);
+    if(state!=='playing'){
+      cx.fillStyle='rgba(0,20,24,0.55)'; cx.fillRect(0,0,W,H);
+      cx.fillStyle='#fff'; cx.textAlign='center'; cx.font='700 20px Montserrat,Tajawal,sans-serif';
+      cx.fillText(state==='ready'?L.start:L.over,W/2,H/2-6);
+      if(state==='over'){ cx.font='600 14px Montserrat,Tajawal,sans-serif';
+        cx.fillStyle='#E0F7FA'; cx.fillText(L.score+': '+Math.floor(score)+'  ·  '+L.best+': '+best,W/2,H/2+22); }
+    }
+  }
+  function step(){
+    t++;
+    cx.clearRect(0,0,W,H);
+    var sky=cx.createLinearGradient(0,0,0,WATER);
+    sky.addColorStop(0,'#8a5a3b'); sky.addColorStop(0.6,'#c97a3f'); sky.addColorStop(1,'#e8a05c');
+    cx.fillStyle=sky; cx.fillRect(0,0,W,WATER+14);
+    drawSun(); drawGulls(); drawWater();
+
+    if(state==='playing'){
+      score+=speed/12; speed+=SPEEDS[mode].ramp;
+      if(t-lastSpawn > Math.max(46,110-speed*7) && Math.random()<0.04){ spawn(); lastSpawn=t; }
+      obs.forEach(function(o){o.x-=speed;});
+      obs=obs.filter(function(o){return o.x>-40;});
+      boat.vy+=SPEEDS[mode].grav; boat.y+=boat.vy;
+      if(boat.y>=WATER){ boat.y=WATER; boat.vy=0; boat.jumping=false; }
+      // collision
+      obs.forEach(function(o){
+        var top=o.type==='buoy'?WATER-8:WATER-o.h-4;
+        if(Math.abs(o.x-boat.x)<SPEEDS[mode].hit && boat.y>top-2){
+          state='over'; best=Math.max(best,Math.floor(score));
+          try{localStorage.setItem('oeaWaveBest',String(best));}catch(e){}
+        }
+      });
+    }
+    drawObs(); drawBoat(); hud();
+    requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+})();
+</script>
+</body>
+</html>
