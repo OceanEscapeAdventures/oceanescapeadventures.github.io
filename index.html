@@ -615,6 +615,9 @@ img{max-width:100%;}
   .hero h1{font-size:clamp(30px,8vw,40px);}
   section{padding:70px 5%;}
 }
+/* Booking date & time native pickers */
+.bk-when-row{display:flex;gap:10px;flex-wrap:wrap;}
+.bk-when-row input{flex:1;min-width:140px;color-scheme:dark;}
 
 /* ═══════════════ CHANGE-REQUEST ADJUSTMENTS ═══════════════ */
 /* Bigger section tags for Packages & Destinations */
@@ -1245,7 +1248,10 @@ img{max-width:100%;}
 <div class="fb-field"><label><span data-i18n="bkLblPax">Number of guests</span></label>
 <input id="bkPax" max="7" min="1" type="number" value="2"/></div>
 <div class="fb-field"><label><span data-i18n="bkLblWhen">Preferred date &amp; time</span></label>
-<input data-i18n-ph="bkWhenPh" id="bkWhen" placeholder="e.g. Friday, 4:00 PM" type="text"/></div>
+<div class="bk-when-row">
+<input id="bkDate" type="date"/>
+<input id="bkTime" type="time" step="900"/>
+</div></div>
 </div>
 <button class="package-btn" id="bkWaBtn" type="button" style="border:0;cursor:pointer;padding:14px 32px;font-size:15px;margin-top:6px;"><span data-i18n="bk_btn">Book via WhatsApp</span></button>
 </div>
@@ -1415,7 +1421,15 @@ document.addEventListener('DOMContentLoaded',function(){
   function draft(){
     var lang=L(), pkg=pkgName(lang), pkgEn=pkgName('en');
     var pax=((document.getElementById('bkPax')||{}).value||'').trim();
-    var when=((document.getElementById('bkWhen')||{}).value||'').trim();
+    var when='';
+    var bd=(document.getElementById('bkDate')||{}).value||'';
+    var bt=(document.getElementById('bkTime')||{}).value||'';
+    if(bd){
+      var dt=new Date(bd+'T'+(bt||'12:00'));
+      var loc=(lang==='ar')?'ar-AE-u-nu-latn':'en-GB';
+      when=dt.toLocaleDateString(loc,{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+      if(bt){ when+=(lang==='ar'?'، الساعة ':' at ')+dt.toLocaleTimeString(loc,{hour:'numeric',minute:'2-digit'}); }
+    }
     var m;
     if(lang==='ar'){
       m='مرحباً Ocean Escape Adventures، أرغب في حجز باقة “'+pkg+'”'+(pkgEn&&pkgEn!==pkg?' ('+pkgEn+')':'');
@@ -1640,6 +1654,9 @@ document.addEventListener('DOMContentLoaded',function(){
   }
   btn.addEventListener('click',function(e){ e.stopPropagation(); set(!menu.classList.contains('open')); });
   menu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click',function(){ set(false); }); });
+  /* booking date picker: no past dates */
+  var bd=document.getElementById('bkDate');
+  if(bd){ bd.min=new Date().toISOString().slice(0,10); }
   document.addEventListener('click',function(e){ if(menu.classList.contains('open') && !menu.contains(e.target) && e.target!==btn) set(false); });
 })();
 </script>
