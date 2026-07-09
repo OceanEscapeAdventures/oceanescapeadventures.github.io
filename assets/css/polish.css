@@ -1,0 +1,354 @@
+/* ═══════════════════════════════════════════════════════════
+   Ocean Escape Adventures — Polish Layer
+   Scroll reveals, nav, hero, performance, micro-interactions
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Scroll progress ── */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0;
+  z-index: 10001;
+  background: linear-gradient(90deg, var(--turquoise, #00A8B5), var(--gold-premium, #D4AF37));
+  pointer-events: none;
+  transition: width 0.08s linear;
+}
+
+/* ── Nav on scroll ── */
+#siteNav {
+  transition: padding 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.35s ease;
+}
+#siteNav.nav-scrolled {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  box-shadow: 0 8px 32px rgba(0, 43, 48, 0.12);
+  background: rgba(255, 255, 255, 0.96);
+}
+#siteNav.nav-scrolled .nav-logo img {
+  height: 48px;
+}
+#siteNav .nav-links a.active,
+#siteNav .mobile-menu a.active {
+  color: var(--turquoise, #00A8B5);
+}
+#siteNav .nav-links a.active::after {
+  width: 100%;
+}
+
+/* ── Section scroll offset (fixed nav) ── */
+section,
+main.hero,
+#activities,
+#packages,
+#places,
+#about,
+#feedback,
+#booking,
+#faq,
+#contact {
+  scroll-margin-top: 88px;
+}
+
+/* ── Scroll reveal ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+.reveal-delay-1 { transition-delay: 0.08s; }
+.reveal-delay-2 { transition-delay: 0.16s; }
+.reveal-delay-3 { transition-delay: 0.24s; }
+.reveal-delay-4 { transition-delay: 0.32s; }
+.reveal-delay-5 { transition-delay: 0.4s; }
+
+/* ── Hero entrance ── */
+.hero-enter {
+  opacity: 0;
+  transform: translateY(22px);
+}
+.hero-enter.play {
+  animation: heroFadeUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.hero-enter-1.play { animation-delay: 0.1s; }
+.hero-enter-2.play { animation-delay: 0.25s; }
+.hero-enter-3.play { animation-delay: 0.4s; }
+.hero-enter-4.play { animation-delay: 0.55s; }
+@keyframes heroFadeUp {
+  to { opacity: 1; transform: none; }
+}
+
+/* ── Performance: mobile fixed background ── */
+@media (max-width: 768px) {
+  body {
+    background-attachment: scroll !important;
+  }
+}
+
+/* ── Unified elevation system ── */
+.prop-card,
+.package-card,
+.activity-card,
+.feedback-card,
+.booking-card {
+  box-shadow: 0 8px 32px rgba(0, 43, 48, 0.08);
+}
+.prop-card:hover,
+.package-card:hover,
+.activity-card:hover {
+  box-shadow: 0 20px 48px rgba(0, 43, 48, 0.14);
+}
+
+/* ── Featured package highlight ── */
+.package-card.featured {
+  border: 2px solid rgba(0, 168, 181, 0.45);
+  box-shadow: 0 12px 40px rgba(0, 168, 181, 0.2), 0 0 0 1px rgba(0, 168, 181, 0.08);
+  transform: scale(1.02);
+}
+.package-card.featured:hover {
+  transform: scale(1.02) translateY(-10px);
+  box-shadow: 0 28px 64px rgba(0, 168, 181, 0.28);
+}
+
+/* ── Booking section wrapper ── */
+.booking-trust {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  max-width: 920px;
+  margin: 0 auto 28px;
+  padding: 0 20px;
+}
+.trust-step {
+  flex: 1 1 200px;
+  max-width: 280px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 18px 20px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(224, 247, 250, 0.22);
+  border-radius: 16px;
+  text-align: start;
+}
+.trust-num {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--turquoise, #00A8B5);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.trust-step strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 4px;
+}
+.trust-step span {
+  font-size: 13px;
+  color: rgba(224, 247, 250, 0.85);
+  line-height: 1.5;
+}
+.booking-card {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 36px 28px;
+  background: rgba(255, 255, 255, 0.97);
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(0, 20, 24, 0.35);
+  border: 1px solid rgba(224, 247, 250, 0.5);
+  text-align: center;
+}
+.booking-card .package-btn {
+  display: inline-block;
+  width: auto;
+  min-width: 220px;
+  padding: 16px 44px;
+  font-size: 15px;
+  background: linear-gradient(135deg, var(--turquoise, #00A8B5), var(--sea-teal, #005B66));
+  color: #fff;
+  border-radius: 50px;
+  box-shadow: 0 6px 20px rgba(0, 168, 181, 0.35);
+}
+.booking-card .package-btn:hover {
+  background: linear-gradient(135deg, var(--sea-teal, #005B66), var(--deep-ocean, #002B30));
+  color: #fff;
+}
+@media (max-width: 600px) {
+  .booking-card { padding: 28px 20px; }
+  .trust-step { flex: 1 1 100%; max-width: none; }
+}
+
+/* ── FAQ smooth open ── */
+.faq-item summary {
+  transition: color 0.2s;
+}
+.faq-item[open] summary {
+  color: var(--turquoise, #00A8B5);
+}
+.faq-item p {
+  animation: faqOpen 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes faqOpen {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 0.92; transform: none; }
+}
+
+/* ── Global button micro-interactions ── */
+.btn-primary,
+.btn-secondary,
+.nav-cta,
+.package-btn,
+.contact-wa-btn,
+.contact-email-btn,
+.fb-submit,
+.home {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.2s ease,
+              background 0.2s ease;
+}
+.btn-primary:active,
+.btn-secondary:active,
+.nav-cta:active,
+.package-btn:active,
+.contact-wa-btn:active,
+.fb-submit:active:not(:disabled),
+.home:active {
+  transform: scale(0.97) translateY(0) !important;
+}
+
+/* ── Focus visible (accessibility) ── */
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+.place-card-photo:focus-visible {
+  outline: 2px solid var(--turquoise, #00A8B5);
+  outline-offset: 3px;
+}
+
+/* ── Feedback submit spinner ── */
+.fb-submit {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.fb-submit.is-loading {
+  pointer-events: none;
+  opacity: 0.85;
+}
+.fb-submit.is-loading .fb-btn-text {
+  opacity: 0.7;
+}
+.fb-spinner {
+  display: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(0, 43, 48, 0.2);
+  border-top-color: var(--deep-ocean, #002B30);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+.fb-submit.is-loading .fb-spinner {
+  display: block;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── WhatsApp one-time pulse ── */
+.wa-float.wa-pulse {
+  animation: waPulse 2s ease-out 1;
+}
+@keyframes waPulse {
+  0% { box-shadow: 0 6px 25px rgba(37, 211, 102, 0.4); }
+  40% { box-shadow: 0 6px 25px rgba(37, 211, 102, 0.4), 0 0 0 12px rgba(37, 211, 102, 0.25); }
+  100% { box-shadow: 0 6px 25px rgba(37, 211, 102, 0.4), 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+/* ── Mobile float button spacing ── */
+@media (max-width: 520px) {
+  .wa-float {
+    bottom: 22px;
+    inset-inline-end: 16px;
+    width: 52px;
+    height: 52px;
+  }
+  .sound-float {
+    bottom: 86px;
+    inset-inline-end: 16px;
+    width: 44px;
+    height: 44px;
+  }
+}
+
+/* ── Subpage polish (gallery, play, 404) ── */
+.subpage-header {
+  transition: box-shadow 0.3s ease, background 0.3s ease;
+}
+.subpage-header.header-scrolled {
+  box-shadow: 0 8px 24px rgba(0, 20, 24, 0.35);
+  background: rgba(0, 43, 48, 0.95);
+}
+.g-card,
+.page-head {
+  /* reveal handled by JS */
+}
+.g-card {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s ease;
+}
+.g-card:hover {
+  box-shadow: 0 16px 40px rgba(0, 20, 24, 0.45);
+}
+.back:focus-visible,
+.home:focus-visible {
+  outline-offset: 4px;
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .hero-enter {
+    opacity: 1;
+    transform: none;
+    animation: none !important;
+  }
+  .scroll-progress {
+    display: none;
+  }
+  .faq-item p {
+    animation: none;
+  }
+  .wa-float.wa-pulse {
+    animation: none;
+  }
+  #siteNav,
+  #siteNav.nav-scrolled,
+  #siteNav.nav-scrolled .nav-logo img {
+    transition: none;
+  }
+}
