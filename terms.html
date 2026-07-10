@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta name="robots" content="noindex, nofollow"/>
-<title>Terms &amp; Conditions — Ocean Escape Adventures</title>
+<title data-en="Terms &amp; Conditions — Ocean Escape Adventures" data-ar="الشروط والأحكام — Ocean Escape Adventures">الشروط والأحكام — Ocean Escape Adventures</title>
 <link href="favicon.ico" rel="icon" sizes="48x48"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,400&family=Montserrat:wght@300;400;500;600;700;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,400&family=Montserrat:wght@300;400;500;600;700;900&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet"/>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
@@ -26,44 +26,50 @@ body {
   line-height: 1.7;
   background: var(--crystal-cyan);
 }
+html[lang="ar"] body, [lang="ar"] { font-family: "Tajawal", sans-serif; }
+
+.top-bar { display:flex; align-items:center; justify-content:space-between; gap:14px; padding:16px 5%; background: var(--deep-ocean); }
+.lang-switch { display:inline-flex; gap:4px; border:1px solid rgba(0,168,181,0.5); border-radius:999px; padding:3px; background:rgba(255,255,255,0.08); direction:ltr; }
+.lang-switch button { font:inherit; font-weight:700; font-size:13px; cursor:pointer; border:0; background:transparent; color:#fff; padding:6px 12px; border-radius:999px; }
+.lang-switch button.active { background: var(--turquoise); }
+.back-link { color: var(--crystal-cyan); text-decoration: none; font-size: 13px; font-weight: 600; letter-spacing: 0.5px; }
+.back-link:hover { color: var(--turquoise); }
+
 .draft-banner {
   background: var(--coral-accent); color: #fff; text-align: center;
   padding: 14px 20px; font-size: 14px; font-weight: 700; letter-spacing: 0.3px;
 }
-.draft-banner span { text-transform: uppercase; letter-spacing: 1.5px; }
-header.terms-top {
-  background: var(--deep-ocean); color: #fff; padding: 40px 5% 50px;
+.draft-banner b { text-transform: uppercase; letter-spacing: 1.5px; }
+.terms-top {
+  background: var(--deep-ocean); color: #fff; padding: 30px 5% 50px;
   text-align: center;
 }
-header.terms-top a.back-link {
-  color: var(--crystal-cyan); text-decoration: none; font-size: 13px; font-weight: 600;
-  letter-spacing: 0.5px; display: inline-block; margin-bottom: 20px;
+.terms-top h1 {
+  font-size: clamp(30px, 4vw, 44px); font-weight: 800;
 }
-header.terms-top a.back-link:hover { color: var(--turquoise); }
-header.terms-top h1 {
-  font-family: "Playfair Display", serif; font-size: clamp(30px, 4vw, 44px); font-weight: 800;
-}
-header.terms-top p { color: var(--crystal-cyan); opacity: 0.85; margin-top: 10px; font-size: 14px; }
-main.terms-body {
+[lang="en"] .terms-top h1 { font-family: "Playfair Display", serif; }
+.terms-top p { color: var(--crystal-cyan); opacity: 0.85; margin-top: 10px; font-size: 14px; }
+.terms-body {
   max-width: 820px; margin: 0 auto; background: #fff; padding: 50px 6%;
   border-radius: 20px; box-shadow: 0 15px 45px rgba(0,43,48,0.10);
-  margin-top: -30px; margin-bottom: 60px; position: relative; z-index: 5;
+  margin-top: -30px; margin-bottom: 40px; position: relative; z-index: 5;
 }
-main.terms-body h2 {
-  font-family: "Playfair Display", serif; color: var(--deep-ocean); font-size: 22px;
+.terms-body h2 {
+  color: var(--deep-ocean); font-size: 22px;
   margin: 40px 0 14px; font-weight: 700;
 }
-main.terms-body h2:first-child { margin-top: 0; }
-main.terms-body p { color: #3A5558; margin-bottom: 12px; font-size: 15px; }
-main.terms-body ul { margin: 0 0 12px 20px; }
-main.terms-body li { color: #3A5558; margin-bottom: 8px; font-size: 15px; }
-main.terms-body .legal-flag {
-  background: rgba(255,107,74,0.08); border-left: 3px solid var(--coral-accent);
+[lang="en"] .terms-body h2 { font-family: "Playfair Display", serif; }
+.terms-body h2:first-of-type { margin-top: 0; }
+.terms-body > p { color: #3A5558; margin-bottom: 12px; font-size: 15px; }
+.terms-body ul { margin: 0 0 12px; padding-inline-start: 20px; }
+.terms-body li { color: #3A5558; margin-bottom: 8px; font-size: 15px; }
+.terms-body strong { color: var(--coral-accent); font-weight: 700; }
+.terms-body .legal-flag {
+  background: rgba(255,107,74,0.08); border-inline-start: 3px solid var(--coral-accent);
   padding: 12px 16px; border-radius: 8px; font-size: 13px; color: var(--coral-accent);
   font-weight: 700; margin-bottom: 16px;
 }
-main.terms-body .fill-in { background: rgba(212,175,55,0.18); color: #6b5410; padding: 1px 6px; border-radius: 4px; font-weight: 700; }
-main.terms-body .updated { margin-top: 40px; padding-top: 20px; border-top: 1px solid #EBF5F6; font-size: 13px; color: #7A9296; }
+.terms-body .updated { margin-top: 40px; padding-top: 20px; border-top: 1px solid #EBF5F6; font-size: 13px; color: #7A9296; }
 footer.terms-foot { text-align: center; padding: 30px 5% 50px; color: var(--deep-ocean); font-size: 13px; }
 footer.terms-foot a { color: var(--turquoise); text-decoration: none; font-weight: 600; }
 </style>
@@ -71,15 +77,122 @@ footer.terms-foot a { color: var(--turquoise); text-decoration: none; font-weigh
 </head>
 <body>
 
-<div class="draft-banner"><span>Draft — Internal Review Only</span> · Not yet confirmed by the business owner · Section 6 pending legal review · Not to be treated as final</div>
+<div class="top-bar">
+<div class="lang-switch"><button data-lang="ar" class="active">ع</button><button data-lang="en">EN</button></div>
+<a class="back-link" href="index.html" data-en="← Back to Ocean Escape Adventures" data-ar="← العودة إلى Ocean Escape Adventures">← العودة إلى Ocean Escape Adventures</a>
+</div>
+
+<!-- ============ ARABIC VERSION ============ -->
+<div id="terms-ar" lang="ar" dir="rtl">
+
+<div class="draft-banner"><b>مسودة — للمراجعة الداخلية فقط</b> · لم تُعتمد بعد من صاحب العمل · القسم 6 قيد المراجعة القانونية · لا تُعتبر نسخة نهائية</div>
 
 <header class="terms-top">
-<a class="back-link" href="index.html">← Back to Ocean Escape Adventures</a>
-<h1>Terms &amp; Conditions</h1>
-<p>Ocean Escape Adventures · Marasy Marina, Al Bateen, Abu Dhabi, UAE</p>
+<h1>الشروط والأحكام</h1>
+<p>Ocean Escape Adventures – حجز الرحلات البحرية</p>
 </header>
 
-<main class="terms-body">
+<div class="terms-body">
+
+<p>من خلال حجز رحلة مع شركة Ocean Escape Adventures («نحن»، «الشركة»)، يوافق العميل («أنت»، «الضيف») على الشروط التالية.</p>
+
+<h2>1. الحجز والدفع والتأكيد</h2>
+<ul>
+<li>لا يتم تأكيد الحجز إلا بعد استلام دفعة مقدمة عبر طريقة الدفع المتفق عليها. ويجب سداد الرصيد المتبقي قبل المغادرة.</li>
+<li>جميع الأسعار معروضة بالدرهم الإماراتي (AED). وأي أرقام معروضة بعملات أخرى (مثل الدولار الأمريكي) هي أرقام تقريبية للإشارة فقط؛ حيث يحدد البنك الذي تتعامل معه أو الجهة المصدرة لبطاقتك سعر التحويل النهائي وأي رسوم سارية.</li>
+<li>مدة الباقات هي كما هو مذكور على موقعنا الإلكتروني. تعمل باقة «استلام القارب وإعادته» حسب الطلب، ويعتمد توقيت إعادته على التوافر في وقت طلب الاتصال بك؛ وقد تحدث تأخيرات خلال فترات الذروة.</li>
+<li>تسري خصومات أيام الأسبوع (حيثما تم الإعلان عنها) على الأيام المحددة فقط، ولا تشمل أيام العطلات الرسمية.</li>
+</ul>
+
+<h2>2. الإلغاء وتغيير المواعيد والظروف الجوية</h2>
+<ul>
+<li>تُستحق عمليات الإلغاء التي تتم قبل <strong>48 ساعة</strong> على الأقل من الموعد المقرر لبدء الرحلة <strong>استردادًا كاملاً للمبلغ (100٪)</strong>.</li>
+<li>في حالة الإلغاء في غضون <strong>24 إلى 48 ساعة</strong> قبل الموعد المحدد لبدء الرحلة، يحق للعميل <strong>استرداد 50%</strong> من المبلغ المدفوع.</li>
+<li><strong>لا يُرد المبلغ المدفوع</strong> في حالة الإلغاء قبل أقل من <strong>24 ساعة</strong> من الموعد المقرر لبدء الرحلة، باستثناء الحالات التي يتم فيها إلغاء الرحلة من قِبل Ocean Escape Adventures (على سبيل المثال، بسبب الأحوال الجوية — انظر أدناه).</li>
+<li>يمكن نقل الحجز إلى تاريخ آخر أو إلى ضيف رئيسي آخر <strong>دون أي رسوم</strong>، شريطة أن يتم الطلب قبل <strong>48 ساعة</strong> على الأقل من الموعد المقرر لبدء الرحلة.</li>
+<li>قد تُفرض رسوم إدارية تصل إلى <strong>50%</strong> من قيمة الحجز على طلبات التغيير التي تُقدم في الفترة ما بين <strong>24 و48 ساعة</strong> قبل الموعد المقرر لبدء الرحلة.</li>
+<li>لا يمكن تلبية طلبات التغيير التي تُقدم قبل أقل من <strong>24 ساعة</strong> من الموعد المقرر لبدء الرحلة.</li>
+<li>إذا اعتبر القبطان أن الظروف البحرية أو الجوية غير آمنة، أو تعذر إجراء الرحلة بسبب عطل ميكانيكي، أو قيود مفروضة من قبل سلطة المرسى أو الميناء، أو أي ظرف آخر خارج عن سيطرتنا المعقولة، فستتصل Ocean Escape Adventures بالضيف لإعادة تحديد موعد الرحلة إلى أقرب موعد متاح دون أي تكلفة إضافية، أو ستقوم برد المبلغ بالكامل.</li>
+<li>في الحالات النادرة التي يضطر فيها القبطان إلى العودة إلى الميناء مبكرًا بسبب حالة طوارئ حقيقية تتعلق بالسلامة أو الحالة الطبية أو الأعطال الميكانيكية، تُعتبر الرحلة قد اكتملت ولا يُسمح بأي استرداد جزئي للمبلغ المدفوع.</li>
+<li>يجب على الضيف الرئيسي تقديم رقم هاتف محمول صالح يمكن الاتصال به عند الحجز. وسنحاول الاتصال بهذا الرقم إذا لم تصل بحلول موعد المغادرة المحدد.</li>
+<li>إذا لم يصل الضيف في غضون 15 دقيقة من موعد المغادرة المحدد دون إخطار مسبق، فسيُعتبر ذلك عدم حضور، وسيتم إلغاء الحجز دون استرداد المبلغ المدفوع.</li>
+<li>تتم معالجة المبالغ المستردة التي تمت الموافقة عليها عبر طريقة الدفع الأصلية في غضون 7–10 أيام عمل.</li>
+</ul>
+
+<h2>3. سلوك الضيوف وسلطة القبطان</h2>
+<ul>
+<li>يتمتع القبطان بالسلطة النهائية في جميع الأمور المتعلقة بالسلامة والمسار والتوقيت ومدى ملاءمة الأنشطة في أي مرحلة من مراحل الرحلة.</li>
+<li>يجوز للقبطان إنهاء الرحلة قبل الأوان، دون استرداد أي مبالغ، إذا كان سلوك أحد الضيوف يعرض سلامته أو سلامة الضيوف الآخرين أو طاقم القارب للخطر.</li>
+<li>يجب على جميع الضيوف الالتزام بتعليمات السلامة التي يصدرها القبطان في جميع الأوقات، بما في ذلك ارتداء سترات النجاة بشكل إلزامي أثناء ممارسة الرياضات المائية وأنشطة السباحة.</li>
+</ul>
+
+<h2>4. حجم المجموعة، والعمر، والحالة الصحية</h2>
+<ul>
+<li>يجب أن يكون الضيف الذي يقوم بالحجز (الضيف الرئيسي) قد بلغ <strong>18 عامًا</strong> على الأقل، وأن يتمتع بالصلاحية القانونية لقبول هذه الشروط نيابة عن مجموعته.</li>
+<li>يجب على جميع الضيوف حمل بطاقة هوية صالحة تحمل صورة (بطاقة الهوية الإماراتية أو جواز السفر) وإبرازها عند الطلب قبل الصعود إلى القارب.</li>
+<li>يقتصر عدد الضيوف في كل رحلة بشكل صارم على 7 ضيوف كحد أقصى بالإضافة إلى القبطان.</li>
+<li>نرحب بالأطفال من جميع الأعمار؛ وتتوفر سترات النجاة لجميع الأعمار، ويجب أن يكون الأطفال تحت إشراف شخص بالغ مرافق لهم طوال الوقت.</li>
+<li>لا يُسمح للأمهات الحوامل بالصعود على متن القارب في أي مرحلة من مراحل الحمل، لأسباب تتعلق بالسلامة.</li>
+<li>يجب على الضيوف الإفصاح، قبل الصعود إلى متن القارب، عن أي حالة طبية أو مشكلة صحية قد تتأثر بركوب القارب أو التعرض لأشعة الشمس أو ممارسة الأنشطة الرياضية المائية — بما في ذلك، على سبيل المثال لا الحصر، الصرع، وحالات الدوار أو الإغماء، ومرض السكري، وأمراض القلب، والعمليات الجراحية التي خضعوا لها مؤخرًا، وأمراض الظهر أو العمود الفقري.</li>
+<li>نرحب بغير السباحين على متن القارب، لكن يجب عليهم الإفصاح عن ذلك قبل المشاركة في أنشطة السباحة أو الرياضات المائية حتى يتسنى اتخاذ الاحتياطات اللازمة.</li>
+</ul>
+
+<h2>5. الكحول والمواد المحظورة</h2>
+<ul>
+<li>لا يُسمح بتواجد الكحول أو المخدرات من أي نوع على متن القارب في أي وقت.</li>
+<li>يُحظر تمامًا إحضار ما يلي على متن القارب: المواد غير المشروعة، والأسلحة بجميع أنواعها، والأوعية الزجاجية، واللهب المكشوف باستثناء المعدات التي توفرها Ocean Escape Adventures لخدمة الشواء.</li>
+<li>تحتفظ Ocean Escape Adventures بالحق في رفض السماح بالصعود إلى متن القارب أو إنهاء الرحلة في حالة العثور على أشياء محظورة.</li>
+</ul>
+
+<h2>6. المسؤولية وتحمل المخاطر</h2>
+<p class="legal-flag">⚠ يلزم إجراء مراجعة قانونية قبل النشر — النص الوارد أدناه هو نص مؤقت وليس نهائيًا.</p>
+<ul>
+<li>تنطوي أنشطة الإبحار والسباحة وصيد الأسماك والرياضات المائية على مخاطر متأصلة. والمشاركة في جميع هذه الأنشطة طوعية وتتم على مسؤولية الضيف الخاصة.</li>
+<li>إلى أقصى حد يسمح به قانون دولة الإمارات العربية المتحدة، تقتصر مسؤولية Ocean Escape Adventures عن الإصابات الشخصية أو الخسائر أو الأضرار الناجمة عن المشاركة في أنشطة الرحلة على ما ينص عليه القانون المعمول به.</li>
+<li>لا يوجد في هذه الشروط ما يستبعد أو يحد من المسؤولية التي لا يجوز استبعادها أو الحد منها قانونًا بموجب قانون دولة الإمارات العربية المتحدة.</li>
+</ul>
+
+<h2>7. المتعلقات الشخصية والأضرار</h2>
+<ul>
+<li>لا تتحمل Ocean Escape Adventures المسؤولية عن فقدان أو تلف المتعلقات الشخصية التي يتم إحضارها على متن القارب.</li>
+<li>يتحمل الضيوف المسؤولية عن أي أضرار تلحق بالقارب أو المعدات أو معدات السلامة نتيجة سوء الاستخدام أو الإهمال أو السلوك المتهور، وقد يُطلب منهم دفع تكاليف الإصلاح أو الاستبدال.</li>
+</ul>
+
+<h2>8. التصوير الفوتوغرافي والإعلام</h2>
+<ul>
+<li>قد تقوم Ocean Escape Adventures بالتقاط صور أو تصوير مقاطع فيديو خلال الرحلات لاستخدامها في المواد التسويقية، بما في ذلك موقعنا الإلكتروني وحساباتنا على وسائل التواصل الاجتماعي.</li>
+<li>يمكن للضيوف الذين لا يرغبون في الظهور في وسائل الإعلام أن يبلغونا بذلك كتابةً قبل بدء الرحلة، وسنبذل جهودًا معقولة لاستبعادهم من وسائل الإعلام المنشورة.</li>
+</ul>
+
+<h2>9. البيانات الشخصية والتعديلات</h2>
+<ul>
+<li>عند الحجز معنا، فإنك توافق على قيام شركة Ocean Escape Adventures بجمع واستخدام اسمك وبيانات الاتصال الخاصة بك ومعلومات الحجز لإدارة حجزك، والرد على استفساراتك، و— في حال عدم اختيارك إلغاء الاشتراك — مشاركة العروض والتحديثات من حين لآخر.</li>
+<li>نحن لا نبيع بياناتك الشخصية إلى أطراف ثالثة. تُستخدم المعلومات حصريًّا لإدارة الحجوزات، ودعم العملاء، و(حيثما يُسمح بذلك) للاتصالات التسويقية.</li>
+<li>قد تقوم Ocean Escape Adventures بتحديث هذه الشروط من وقت لآخر. وتسري على الحجز النسخة المنشورة على موقعنا الإلكتروني وقت إجراء الحجز.</li>
+</ul>
+
+<h2>10. القانون الواجب التطبيق</h2>
+<ul>
+<li>تخضع هذه الشروط لقوانين دولة الإمارات العربية المتحدة وإمارة أبوظبي.</li>
+<li>تخضع أي نزاعات تنشأ عن هذه الشروط أو عن أي حجز للاختصاص القضائي الحصري لمحاكم أبوظبي.</li>
+</ul>
+
+<p class="updated">آخر تحديث: 10 يوليو 2026 — Ocean Escape Adventures، مرسى مراسي، البطين، أبوظبي، الإمارات العربية المتحدة.</p>
+
+</div>
+</div>
+
+<!-- ============ ENGLISH VERSION ============ -->
+<div id="terms-en" lang="en" dir="ltr" style="display:none;">
+
+<div class="draft-banner"><b>Draft — Internal Review Only</b> &middot; Not yet confirmed by the business owner &middot; Section 6 pending legal review &middot; Not to be treated as final</div>
+
+<header class="terms-top">
+<h1>Terms &amp; Conditions</h1>
+<p>Ocean Escape Adventures &middot; Marasy Marina, Al Bateen, Abu Dhabi, UAE</p>
+</header>
+
+<div class="terms-body">
 
 <p>By booking a trip with Ocean Escape Adventures ("we", "us", "the Company"), the customer ("you", "the Guest") agrees to the following terms.</p>
 
@@ -166,11 +279,34 @@ footer.terms-foot a { color: var(--turquoise); text-decoration: none; font-weigh
 
 <p class="updated">Last updated: 10 July 2026 — Ocean Escape Adventures, Marasy Marina, Al Bateen, Abu Dhabi, UAE.</p>
 
-</main>
+</div>
+</div>
 
 <footer class="terms-foot">
-Questions about these terms? <a href="mailto:info@oceanescape.ae">info@oceanescape.ae</a> <!-- WhatsApp link temporarily removed — under maintenance, restore <a href="https://wa.me/971564004009">WhatsApp</a> once fixed -->
+<span data-en="Questions about these terms?" data-ar="لديك أسئلة حول هذه الشروط؟">لديك أسئلة حول هذه الشروط؟</span> <a href="mailto:info@oceanescape.ae">info@oceanescape.ae</a> <!-- WhatsApp link temporarily removed — under maintenance, restore <a href="https://wa.me/971564004009">WhatsApp</a> once fixed -->
 </footer>
+
+<script>
+(function(){
+  var lang='ar';
+  try{lang=localStorage.getItem('oea_lang')||'ar';}catch(e){}
+  function setLang(l){
+    lang=l;
+    document.documentElement.lang=l;
+    document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    document.getElementById('terms-ar').style.display = (l==='ar') ? '' : 'none';
+    document.getElementById('terms-en').style.display = (l==='en') ? '' : 'none';
+    document.querySelectorAll('[data-en]').forEach(function(el){
+      var v=el.getAttribute(l==='ar'?'data-ar':'data-en');
+      if(v!==null){ if(el.tagName==='TITLE'){document.title=v;} else {el.textContent=v;} }
+    });
+    document.querySelectorAll('.lang-switch button').forEach(function(b){b.classList.toggle('active',b.getAttribute('data-lang')===l);});
+    try{localStorage.setItem('oea_lang',l);}catch(e){}
+  }
+  document.querySelectorAll('.lang-switch button').forEach(function(b){b.addEventListener('click',function(){setLang(b.getAttribute('data-lang'));});});
+  setLang(lang);
+})();
+</script>
 
 <script src="assets/js/polish.js"></script>
 </body>
