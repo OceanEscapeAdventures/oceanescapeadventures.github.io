@@ -430,6 +430,85 @@ footer {
 }
 .contact-wa-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(37,211,102,0.45); }
 
+.contact-ig-btn {
+  display: flex; align-items: center; gap: 16px;
+  background: linear-gradient(135deg, rgba(240,148,51,0.1), rgba(188,24,136,0.08));
+  border: 1.5px solid rgba(193,53,132,0.3);
+  border-radius: 16px; padding: 18px 22px;
+  text-decoration: none; transition: all 0.25s;
+  box-shadow: 0 2px 12px rgba(193,53,132,0.08);
+}
+.contact-ig-btn:hover {
+  background: linear-gradient(135deg, rgba(240,148,51,0.18), rgba(188,24,136,0.14));
+  border-color: rgba(193,53,132,0.55);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(193,53,132,0.15);
+}
+.contact-ig-icon {
+  width: 48px; height: 48px; border-radius: 13px; flex-shrink: 0;
+  background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+  color: #FFFFFF;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 12px rgba(193,53,132,0.35);
+}
+.contact-ig-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 2.5px;
+  text-transform: uppercase; color: #C13584; margin-bottom: 4px;
+}
+.contact-ig-value {
+  font-size: 14px; font-weight: 700; color: var(--deep-ocean);
+  letter-spacing: -0.2px;
+}
+
+/* ── QUICK EMAIL MODAL ── */
+.qe-overlay {
+  display: none; position: fixed; inset: 0; z-index: 2000;
+  background: rgba(0,43,48,0.55); backdrop-filter: blur(4px);
+  align-items: center; justify-content: center; padding: 20px;
+}
+.qe-overlay.active { display: flex; }
+.qe-card {
+  background: #FFFFFF; border-radius: 20px; padding: 32px;
+  max-width: 440px; width: 100%; position: relative;
+  box-shadow: 0 25px 60px rgba(0,43,48,0.35);
+}
+.qe-close {
+  position: absolute; top: 16px; right: 16px; width: 32px; height: 32px;
+  border-radius: 50%; border: none; background: var(--crystal-cyan);
+  color: var(--deep-ocean); cursor: pointer; font-size: 16px;
+  display: flex; align-items: center; justify-content: center;
+}
+.qe-card h3 {
+  font-family: "Playfair Display", serif; font-size: 24px;
+  color: var(--deep-ocean); margin-bottom: 6px; font-weight: 800;
+}
+.qe-card p.qe-sub { color: #5A7174; font-size: 13px; margin-bottom: 22px; }
+.qe-field { margin-bottom: 16px; }
+.qe-field label {
+  display: block; font-size: 11px; font-weight: 700; letter-spacing: 1px;
+  text-transform: uppercase; color: #7A9296; margin-bottom: 6px;
+}
+.qe-field input, .qe-field textarea {
+  width: 100%; border: 1.5px solid rgba(0,91,102,0.18); border-radius: 10px;
+  padding: 11px 14px; font-size: 14px; font-family: inherit; color: var(--deep-ocean);
+  background: rgba(224,247,250,0.3); resize: vertical;
+}
+.qe-field input:focus, .qe-field textarea:focus {
+  outline: none; border-color: var(--turquoise);
+}
+.qe-submit {
+  width: 100%; background: var(--turquoise); color: #FFFFFF; border: none;
+  font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 14px; border-radius: 50px; cursor: pointer; transition: background 0.2s;
+}
+.qe-submit:hover { background: var(--sea-teal); }
+.qe-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+.qe-error { display: none; color: #C0392B; font-size: 12px; margin-bottom: 14px; }
+.qe-thankyou { display: none; text-align: center; padding: 10px 0; }
+.qe-thankyou svg { color: var(--turquoise); margin-bottom: 12px; }
+.qe-thankyou h4 { font-family: "Playfair Display", serif; font-size: 20px; color: var(--deep-ocean); margin-bottom: 8px; }
+.qe-thankyou p { color: #5A7174; font-size: 13px; }
+
 .contact-qr-wrap {
   display: flex; align-items: center; gap: 18px;
   background: rgba(0,168,181,0.06);
@@ -1297,7 +1376,7 @@ img{max-width:100%;}
 <div class="contact-reach">
 <!-- Email — prominent -->
 
-<a class="contact-email-btn" href="mailto:info@oceanescape.ae">
+<a class="contact-email-btn" href="mailto:bookings@oceanescape.ae?cc=info@oceanescape.ae" id="qeOpenBtn">
 <div class="contact-email-icon">
 <svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="22"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
 </div>
@@ -1306,11 +1385,21 @@ img{max-width:100%;}
 <div class="contact-email-value">info@oceanescape.ae</div>
 </div>
 </a>
-<!-- WhatsApp button — TEMPORARY: WhatsApp integration under maintenance, routed to email. Restore href to https://wa.me/971564004009, re-add data-wa-generic="1", and swap the icon/label back once fixed. -->
-<a class="contact-wa-btn" href="mailto:info@oceanescape.ae" style="opacity:0.85;">
-<svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg> <span data-i18n="k175">WhatsApp Under Maintenance — Tap to Email Us</span> </a>
-<!-- QR Code — TEMPORARY: hidden while WhatsApp is under maintenance. Remove display:none to restore. -->
-<div class="contact-qr-wrap" style="display:none;">
+<!-- Instagram — official business account. -->
+<a class="contact-ig-btn" href="https://www.instagram.com/oceanescape.ae/" target="_blank" rel="noopener">
+<div class="contact-ig-icon">
+<svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="22"><rect height="20" rx="5" ry="5" width="20" x="2" y="2"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>
+</div>
+<div>
+<div class="contact-ig-label"><span data-i18n="k200">Follow Us</span></div>
+<div class="contact-ig-value">@oceanescape.ae</div>
+</div>
+</a>
+<!-- WhatsApp button — restored to live WhatsApp; also fires a background email notification via notifyEmails() in the script below. -->
+<a class="contact-wa-btn" href="https://wa.me/971564004009" target="_blank" data-wa-generic="1">
+<svg viewbox="0 0 24 24" width="20" height="20" fill="#25D366"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.82 12.04 21.82C17.5 21.82 21.95 17.37 21.95 11.91C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.68 2 12.04 2ZM12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.82L4.43 19.64L5.27 16.61L5.07 16.29C4.24 14.98 3.8 13.47 3.8 11.91C3.8 7.37 7.5 3.67 12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.71 20.28 11.91C20.27 16.46 16.58 20.15 12.04 20.15ZM16.56 13.99C16.31 13.87 15.09 13.27 14.87 13.19C14.65 13.11 14.49 13.07 14.33 13.32C14.17 13.57 13.71 14.11 13.57 14.27C13.43 14.43 13.29 14.45 13.04 14.33C12.79 14.21 11.99 13.94 11.04 13.1C10.31 12.45 9.81 11.64 9.67 11.39C9.53 11.14 9.65 11.01 9.77 10.89C9.88 10.78 10.02 10.6 10.14 10.46C10.26 10.32 10.3 10.22 10.38 10.06C10.46 9.9 10.42 9.76 10.36 9.64C10.3 9.52 9.81 8.29 9.61 7.79C9.41 7.31 9.21 7.37 9.06 7.36C8.92 7.35 8.76 7.35 8.6 7.35C8.44 7.35 8.18 7.41 7.96 7.66C7.74 7.91 7.13 8.48 7.13 9.71C7.13 10.94 7.98 12.13 8.1 12.29C8.22 12.45 9.8 14.91 12.24 15.98C12.82 16.24 13.28 16.39 13.63 16.5C14.21 16.69 14.75 16.66 15.17 16.6C15.64 16.53 16.63 16 16.83 15.41C17.03 14.82 17.03 14.32 16.97 14.21C16.91 14.1 16.75 14.03 16.56 13.99Z"></path></svg> <span data-i18n="k175">Chat on WhatsApp</span> </a>
+<!-- QR Code — restored. -->
+<div class="contact-qr-wrap">
 <img alt="Scan to WhatsApp" src="assets/qr.png"/>
 <div class="contact-qr-text">
 <div class="contact-qr-title"><span data-i18n="k176">Scan to Book</span></div>
@@ -1366,6 +1455,45 @@ img{max-width:100%;}
 </div>
 </div>
 </section>
+<!-- ═══════════════ QUICK EMAIL MODAL (sends via Web3Forms — no mail client required) ═══════════════ -->
+<div class="qe-overlay" id="qeOverlay">
+<div class="qe-card">
+<button aria-label="Close" class="qe-close" id="qeCloseBtn" type="button">✕</button>
+<div id="qeFormWrap">
+<h3><span data-i18n="k201">Send Us a Message</span></h3>
+<p class="qe-sub"><span data-i18n="k202">We'll reply to bookings@oceanescape.ae — a copy also goes to info@oceanescape.ae.</span></p>
+<div class="qe-error" id="qeError"></div>
+<form id="qeForm">
+<div class="qe-field">
+<label for="qeName"><span data-i18n="k203">Your Name</span></label>
+<input id="qeName" name="name" required="" type="text"/>
+</div>
+<div class="qe-field">
+<label for="qeEmail"><span data-i18n="k204">Your Email</span></label>
+<input id="qeEmail" name="email" required="" type="email"/>
+</div>
+<div class="qe-field">
+<label for="qeMessage"><span data-i18n="k205">Message</span></label>
+<textarea id="qeMessage" name="message" required="" rows="4">Hi Ocean Escape Adventures team,
+
+I'd like to enquire about booking a boat charter.
+
+Preferred date:
+Number of guests:
+Package of interest:
+
+Thanks!</textarea>
+</div>
+<button class="qe-submit" id="qeSubmitBtn" type="submit"><span id="qeSubmitText"><span data-i18n="k206">Send Message</span></span></button>
+</form>
+</div>
+<div class="qe-thankyou" id="qeThankyou">
+<svg fill="none" height="44" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="44"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+<h4><span data-i18n="k207">Message Sent!</span></h4>
+<p><span data-i18n="k208">Thanks for reaching out — we'll get back to you shortly.</span></p>
+</div>
+</div>
+</div>
 <footer>
 <div class="footer-grid">
 <div class="footer-brand"> <span data-i18n="k185">Ocean Escape</span> <span><span data-i18n="k186">Adventures</span></span>
@@ -1387,11 +1515,11 @@ img{max-width:100%;}
 <div class="footer-legal" style="font-size:11px;opacity:0.6;margin-top:6px;letter-spacing:0.3px;">Trade License No. CN-6613063, Abu Dhabi, UAE</div>
 </div>
 </footer>
-<!-- TEMPORARY: WhatsApp integration under maintenance. Restore href to https://wa.me/971564004009, target="_blank", title="Chat on WhatsApp", data-wa-generic="1", background to #25D366, and the WhatsApp SVG path once fixed. -->
-<a class="wa-float" href="mailto:info@oceanescape.ae" title="WhatsApp temporarily unavailable — tap to email us / واتساب غير متاح مؤقتاً، اضغط للتواصل عبر البريد الإلكتروني" style="background:var(--turquoise);box-shadow:0 6px 25px rgba(0,168,181,0.4);">
-<svg fill="none" height="26" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="26"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+<!-- WhatsApp floating button — restored to live WhatsApp; also fires a background email notification via notifyEmails() in the script below. -->
+<a class="wa-float" href="https://wa.me/971564004009" target="_blank" title="Chat on WhatsApp" data-wa-generic="1" style="background:#25D366;box-shadow:0 6px 25px rgba(37,211,102,0.4);">
+<svg viewbox="0 0 24 24" width="26" height="26" fill="white"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.82 12.04 21.82C17.5 21.82 21.95 17.37 21.95 11.91C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.68 2 12.04 2ZM12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.82L4.43 19.64L5.27 16.61L5.07 16.29C4.24 14.98 3.8 13.47 3.8 11.91C3.8 7.37 7.5 3.67 12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.71 20.28 11.91C20.27 16.46 16.58 20.15 12.04 20.15ZM16.56 13.99C16.31 13.87 15.09 13.27 14.87 13.19C14.65 13.11 14.49 13.07 14.33 13.32C14.17 13.57 13.71 14.11 13.57 14.27C13.43 14.43 13.29 14.45 13.04 14.33C12.79 14.21 11.99 13.94 11.04 13.1C10.31 12.45 9.81 11.64 9.67 11.39C9.53 11.14 9.65 11.01 9.77 10.89C9.88 10.78 10.02 10.6 10.14 10.46C10.26 10.32 10.3 10.22 10.38 10.06C10.46 9.9 10.42 9.76 10.36 9.64C10.3 9.52 9.81 8.29 9.61 7.79C9.41 7.31 9.21 7.37 9.06 7.36C8.92 7.35 8.76 7.35 8.6 7.35C8.44 7.35 8.18 7.41 7.96 7.66C7.74 7.91 7.13 8.48 7.13 9.71C7.13 10.94 7.98 12.13 8.1 12.29C8.22 12.45 9.8 14.91 12.24 15.98C12.82 16.24 13.28 16.39 13.63 16.5C14.21 16.69 14.75 16.66 15.17 16.6C15.64 16.53 16.63 16 16.83 15.41C17.03 14.82 17.03 14.32 16.97 14.21C16.91 14.1 16.75 14.03 16.56 13.99Z"></path></svg>
 </a>
-<script>window.I18N={"en": {"k0": "Ocean Escape", "k1": "Adventures", "k2": "Activities", "k3": "Packages", "k4": "The Boat", "k5": "Reviews", "k6": "Contact", "k7": "Book Private Tour", "k8": "Enjoy a thrilling sea experience full of adventure and unforgettable memories", "k9": "Every sea trip is a chance to relax, explore, and enjoy nature's beauty", "k10": "Craft your perfect day at sea. Explore majestic islands, enjoy customized BBQ lunches, experience thrilling water sports, or relax on pristine hidden beaches.", "k11": "Book Your Escape", "k12": "Explore Packages", "k13": "100% Private & Safe", "k14": "Exclusive use of the boat for your group of up to 7 guests with certified captain.", "k15": "All-Inclusive Pricing", "k16": "Ice, water, fuel, life jacket, and specialized equipment included. No additional fees.", "k17": "Clear, Fixed Timings", "k18": "Each package runs for its fixed duration as listed below — clear timings, no surprises.", "k19": "Your safety is our highest priority.", "k20": "Every trip is led by a certified captain with life jackets and full safety equipment on board. From departure to return, you are in safe, experienced hands at all times.", "k21": "Tailored Experiences", "k22": "Unforgettable Ocean Adventures", "k23": "Mix and match your favorite ocean activities to design an unforgettable bespoke sea itinerary.", "k24": "Island Exploration", "k25": "Set off on a sea trip to the tranquil islands around Abu Dhabi and discover pristine beaches and crystal-clear waters.", "k26": "Leisure Fishing", "k27": "Enjoy a leisure fishing trip between the islands, where the passion of fishing meets the beauty of nature.", "k28": "Island BBQ Experience", "k29": "Spend the best of times with family and friends on a BBQ trip amid Abu Dhabi's stunning beaches.", "k30": "Kayak & Donut Adventure", "k31": "Feel the pure rush of adrenaline as you glide across the waves on our high-speed watersport towables.", "k32": "Sunset Cruises", "k33": "Enjoy the magic of Abu Dhabi's sunset, where the colors of the sky meet the beauty of the sea in an unforgettable scene.", "k34": "Island Beach Picnic", "k35": "Spend unforgettable times on the island beach amid soft sands and clear waters.", "k36": "Curated Charters", "k37": "Select Your Sea Package", "k38": "Fair, flat-rate pricing for the entire boat — up to 7 guests per trip. We also host private parties & celebrations with fully customized arrangements.", "k39": "Weekday Special: Enjoy 10% off any package on any weekday (excludes weekends & national holidays).", "k40": "1+1 Hrs Free", "k41": "Swimming Tour", "k42": "Refreshing Open-Water Swim", "k43": "Complimentary Water", "k44": "Safe, Calm Swimming Spot", "k45": "Professional Captain", "k46": "Group Size: Up to 7 Guests", "k47": "Total Price", "k48": "AED 399", "k49": "Select Package", "k50": "On Demand", "k51": "Boat Pick-Up & Drop", "k52": "Start your trip in comfort with our sea transfer service to and from the island, designed for a smooth and enjoyable experience.", "k53": "Pick-Up from Marasy, Al Bateen", "k54": "Drop-Off at Any Covered Destination", "k55": "Professional Captain Onboard", "k56": "Return Pick-Up On Call", "k57": "Group Size: Up to 7 Guests", "k58": "* Return pick-up is subject to boat availability and may involve a short wait during busy periods.", "k59": "Total Price", "k60": "AED 399", "k61": "Select Package", "k62": "4+1 Hrs Free", "k63": "Pick-Up & Drop with Captain", "k64": "Your boat and captain stay with you for the whole trip — ready to move whenever you are, for a comfortable and safe journey.", "k65": "Private Boat & Captain for Your Trip", "k66": "Boat & Captain Stay With You Throughout", "k67": "Cruise Our Covered Destinations at Your Pace", "k68": "Return to Marasy at the End · 5th Hour Free", "k69": "Group Size: Up to 7 Guests", "k70": "Optional add-ons at extra cost:", "k71": "BBQ", "k72": " — AED 75 per person.", "k73": "Water sports (Swimming, Kayak & Donut)", "k74": " — AED 99 per person.", "k75": "Total Price", "k76": "AED 799", "k77": "Select Package", "k78": "4+1 Hrs Free", "k79": "Island Activities Package", "k81": "Donut Ride", "k82": "Kayaking", "k83": "Beachside Island BBQ", "k84": "Group Size: Up to 7 Guests", "k85": "Total Price", "k86": "AED 999", "k87": "Select Package", "k88": "Most Popular", "k89": "5+1 Hrs Free", "k90": "Island Adventure", "k91": "Fishing Between the Islands", "k92": "Island Swimming", "k93": "Kayak & Donut", "k94": "Abu Dhabi City Tour", "k95": "Group Size: Up to 7 Guests", "k96": "Optional: add a", "k97": "beachside BBQ", "k98": "for just", "k99": "AED 75 per person", "k100": ".", "k101": "Total Price", "k102": "AED 1,499", "k103": "Select Package", "k104": "Destinations & Islands", "k105": "Places We", "k106": "Cover", "k107": "We take you on a journey to explore Abu Dhabi's most beautiful islands and coastal landmarks, with varied routes to suit every taste.", "k108": "Al Qana", "k109": "Cruise Dining", "k110": "Breakfast · Brunch · Dinner", "k111": "Maqta", "k112": "Heritage Waterway", "k113": "Breakfast · Brunch · Dinner", "k114": "Sandbar Island", "k115": "Sandbank & Watersports", "k116": "Al Maya Island", "k117": "Private Island Beach", "k118": "English Island", "k119": "Island Retreat", "k120": "Al Halah Island", "k121": "Island Escape", "k122": "Also Covering", "k123": "🏘️ Corniche City Tour", "k124": "🎨 Saadiyat Island", "k125": "🏛 Louvre Abu Dhabi", "k126": "33 FT", "k127": "Powered by Yamaha Engines", "k128": "Elite Craftsmanship", "k129": "Step Aboard Luxury", "k130": "Enjoy your trip aboard a modern 33ft vessel, fitted with advanced engines that deliver powerful performance, comfort, and safety throughout your journey.", "k131": "Equipped with expansive sunbeds, fresh deep cushions, full protective shade biminis, and a high-fidelity integrated sound system, it guarantees smooth navigation through Abu Dhabi's marine waters.", "k132": "Capacity", "k133": "Max 7 Guests", "k134": "Power", "k135": "Twin High-Output Engines", "k136": "Audio", "k137": "Premium Bluetooth Setup", "k138": "Amenities", "k139": "Island BBQ Service & Iceboxes", "k140": "Reviews", "k141": "What Our Guests Say", "k142": "We're a new operator building our reputation one trip at a time. Real guest reviews will appear here soon.", "k143": "Been out on the water with us? You could be our first featured review. Share your honest experience using the form below — we'd love to hear how your trip went.", "k144": "Your Turn", "k145": "Your Opinion Matters", "k146": "We're grateful for your trust — we'd be honored to have you share your experience and rating so we can keep delivering exceptional service.", "k147": "Tap below to open our quick feedback form.", "k148": "Open Feedback Form", "k149": "Name", "k150": "*", "k151": "Country", "k152": "Your Rating", "k153": "*", "k154": "★", "k155": "★", "k156": "★", "k157": "★", "k158": "★", "k159": "Your Experience", "k160": "*", "k161": "Submit Feedback", "k162": "Thank you! 🙏", "k163": "Your feedback means the world to us. We hope to welcome you aboard again soon.", "k164": "Reservations", "k165": "Plan Your Sea Adventure", "k166": "Reach out directly to secure your chosen date. We are ready to customize your cruise to perfection.", "k167": "Departure Location", "k168": "Marasy Marina, Al Bateen, Abu Dhabi, UAE", "k169": "📍 Berth B14", "k170": "Open in Google Maps →", "k171": "Direct Hotline & WhatsApp", "k172": "+971 56 400 400 9", "k173": "Email Us", "k174": "", "k175": "WhatsApp Under Maintenance — Tap to Email Us", "k176": "Scan to Book", "k177": "Opens WhatsApp instantly — no number needed", "k178": "📍", "k179": "Find Us Here", "k180": "Marasy Marina", "k181": "Al Bateen, Abu Dhabi, UAE", "k182": "⚓ Berth B14", "k183": "Open in Google Maps", "k184": "Tap above to get directions to Berth B14", "k185": "Ocean Escape", "k186": "Adventures", "k187": "Activities", "k188": "Packages", "k189": "Our Boat", "k190": "Reviews", "k191": "Contact", "k192": "Memories that last a lifetime", "k193": "RIDE THE GULF  ·  CHASE THE SUN", "k194": "📍 Marasy, Al Bateen, Abu Dhabi  ·  © 2026 Ocean Escape Excursion Boats and Ships Renting", "k195": "Your name", "k196": "Where are you visiting from?", "k197": "Tell us about your trip...", "k198": "Complimentary Ice", "k199": "Optional add-on at extra cost:", "title": "Ocean Escape Adventures — Premium Abu Dhabi Boat Tours", "nav_book": "Book", "bk_tag": "Book Online", "bk_title": "Book & Pay", "bk_sub": "Reserve your private boat tour and pay securely online — choose your package, pick a time, and confirm in minutes.", "bk_ph": "Pick your package and details below, then tap to send us a ready-made booking message on WhatsApp — just proofread and hit send.", "bk_btn": "Book via WhatsApp", "bkLblPackage": "Choose your package", "bkLblPax": "Number of guests", "bkLblWhen": "Preferred date & time", "bkWhenPh": "e.g. Friday, 4:00 PM", "bk_link_btn": "Book Now", "bk_terms_pre": "By booking, you agree to our", "bk_terms_link": "Terms & Conditions"}, "ar": {"k0": "Ocean Escape", "k1": "Adventures", "k2": "الأنشطة", "k3": "الباقات", "k4": "القارب", "k5": "التقييمات", "k6": "تواصل معنا", "k7": "احجز رحلة خاصة", "k8": "استمتع بتجربة بحرية مليئة بالإثارة والمغامرة وصنع ذكريات لا تُنسى", "k9": "كل رحلة بحرية هي فرصة للاسترخاء، الاستكشاف، والاستمتاع بجمال الطبيعة", "k10": "اصنع يومك المثالي في البحر. استكشف الجزر الساحرة، واستمتع بغداءٍ مشوي حسب طلبك، وعِش إثارة الرياضات المائية، أو استرخِ على شواطئ نقية مخفية.", "k11": "احجز رحلتك", "k12": "استعرض الباقات", "k13": "خصوصية وأمان 100%", "k14": "استخدام حصري للقارب لمجموعتك حتى 7 ضيوف مع قبطان معتمد.", "k15": "سعر شامل لكل شيء", "k16": "الثلج والماء والوقود وسترة النجاة والمعدات المتخصصة مشمولة. بدون رسوم إضافية.", "k17": "أوقات محددة وواضحة", "k18": "كل باقة تُنفَّذ ضمن مدتها الثابتة كما هو موضح أدناه — أوقات واضحة بلا مفاجآت.", "k19": "سلامتك هي أولويتنا القصوى.", "k20": "كل رحلة يقودها قبطان معتمد مع توفّر سترات النجاة وكامل معدات السلامة على متن القارب. من الانطلاق حتى العودة، أنت في أيدٍ آمنة وخبيرة طوال الوقت.", "k21": "تجارب مصممة خصيصاً", "k22": "مغامرات بحرية لا تُنسى", "k23": "اختر وامزج بين أنشطتك البحرية المفضلة لتصميم برنامج بحري فريد لا يُنسى.", "k24": "استكشاف الجزر", "k25": "انطلق في رحلة بحرية إلى الجزر الهادئة المحيطة بأبو ظبي لاكتشاف الشواطئ والمياه الصافية.", "k26": "صيد ترفيهي", "k27": "انطلق في رحلة صيد ترفيهية بين الجزر، حيث يجتمع شغف الصيد مع جمال الطبيعة.", "k28": "تجربة شواء بين الجزر", "k29": "اقضِ أجمل الأوقات مع العائلة والأصدقاء في رحلة شواء وسط شواطئ أبوظبي الخلابة.", "k30": "مغامرة الكاياك والدونات", "k31": "عِش نشوة الأدرينالين وأنت تنزلق فوق الأمواج على ألعابنا المائية عالية السرعة.", "k32": "رحلات الغروب", "k33": "استمتع بسحر غروب الشمس في أبوظبي، حيث تلتقي ألوان السماء بجمال البحر في مشهد لا يُنسى.", "k34": "نزهة على شاطئ الجزيرة", "k35": "اقضِ أوقاتًا لا تُنسى على شاطئ الجزيرة وسط الرمال الناعمة والمياه الصافية.", "k36": "رحلات مختارة بعناية", "k37": "اختر باقتك البحرية", "k38": "أسعار مناسبة وموحّدة للقارب بالكامل — حتى 7 ضيوف في الرحلة. كما ننظّم الحفلات والمناسبات الخاصة بترتيبات مخصصة بالكامل.", "k39": "عرض أيام الأسبوع: احصل على خصم 10% على أي باقة في أي يوم من أيام الأسبوع (باستثناء عطلات نهاية الأسبوع والأعياد الوطنية).", "k40": "ساعة + ساعة مجاناً", "k41": "جولة السباحة", "k42": "سباحة منعشة في المياه المفتوحة", "k43": "ماء مجاناً", "k44": "موقع سباحة آمن وهادئ", "k45": "قبطان محترف", "k46": "حجم المجموعة: حتى 7 ضيوف", "k47": "السعر الإجمالي", "k48": "399 درهم", "k49": "اختر الباقة", "k50": "حسب الطلب", "k51": "توصيل وإنزال بالقارب", "k52": "ابدأ رحلتك براحة مع خدمة النقل البحري من وإلى الجزيرة، المصممة لتوفير تجربة سلسة وممتعة.", "k53": "الانطلاق من مراسي، البطين", "k54": "الإنزال في أي وجهة مغطاة", "k55": "قبطان محترف على متن القارب", "k56": "عودة الاصطحاب عند الطلب", "k57": "حجم المجموعة: حتى 7 ضيوف", "k58": "* عودة الاصطحاب مرهونة بتوفر القارب وقد تتطلب انتظاراً قصيراً في أوقات الذروة.", "k59": "السعر الإجمالي", "k60": "399 درهم", "k61": "اختر الباقة", "k62": "4 ساعات + ساعة مجاناً", "k63": "توصيل وإنزال مع القبطان", "k64": "يبقى قاربك وقبطانك معك طوال الرحلة — جاهزون للتحرك متى أردت، لرحلة مريحة وآمنة.", "k65": "قارب وقبطان خاص لرحلتك", "k66": "القارب والقبطان يبقيان معك طوال الوقت", "k67": "تجوّل في وجهاتنا المغطاة على راحتك", "k68": "العودة إلى مراسي في النهاية · الساعة الخامسة مجاناً", "k69": "حجم المجموعة: حتى 7 ضيوف", "k70": "إضافات اختيارية برسوم إضافية:", "k71": "الشواء", "k72": " — 75 درهم للفرد.", "k73": "الرياضات المائية (سباحة، كاياك ودونات)", "k74": " — 99 درهم للفرد.", "k75": "السعر الإجمالي", "k76": "799 درهم", "k77": "اختر الباقة", "k78": "4 ساعات + ساعة مجاناً", "k79": "باقة أنشطة الجزيرة", "k81": "ركوب الدونات", "k82": "التجديف بالكاياك", "k83": "شواء على شاطئ الجزيرة", "k84": "حجم المجموعة: حتى 7 ضيوف", "k85": "السعر الإجمالي", "k86": "999 درهم", "k87": "اختر الباقة", "k88": "الأكثر رواجاً", "k89": "5 ساعات + ساعة مجاناً", "k90": "مغامرة الجزيرة", "k91": "الصيد بين الجزر", "k92": "السباحة في الجزيرة", "k93": "كاياك ودونات", "k94": "جولة في مدينة أبوظبي", "k95": "حجم المجموعة: حتى 7 ضيوف", "k96": "اختياري: أضف", "k97": "شواءً على الشاطئ", "k98": "مقابل", "k99": "75 درهم للفرد", "k100": " فقط.", "k101": "السعر الإجمالي", "k102": "1,499 درهم", "k103": "اختر الباقة", "k104": "الوجهات والجزر", "k105": "الأماكن التي", "k106": "نغطيها", "k107": "نأخذك في رحلة لاستكشاف أجمل الجزر والمعالم البحرية في أبوظبي، ضمن مسارات متنوعة تناسب جميع الأذواق.", "k108": "القناة", "k109": "مطاعم على الواجهة", "k110": "فطور · بيرانش · عشاء", "k111": "المقطع", "k112": "ممر مائي تراثي", "k113": "فطور · بيرانش · عشاء", "k114": "جزيرة الحاجز الرملي", "k115": "كثبان رملية ورياضات مائية", "k116": "جزيرة الماية", "k117": "شاطئ جزيرة خاص", "k118": "الجزيرة الإنجليزية", "k119": "ملاذ جزيري", "k120": "جزيرة الحالة", "k121": "استجمام في الجزيرة", "k122": "نغطي أيضاً", "k123": "🏘️ جولة في الكورنيش", "k124": "🎨 جزيرة السعديات", "k125": "🏛 لوفر أبوظبي", "k126": "33 قدم", "k127": "بمحركات ياماها", "k128": "حِرفية راقية", "k129": "اصعد إلى متن الفخامة", "k130": "استمتع برحلة بحرية على متن قارب حديث بطول 33 قدم، مزود بمحركات متطورة توفر أداءً قويًا، راحةً، وأمانًا طوال الرحلة.", "k131": "مجهّز بأسرّة تشمّس واسعة، ووسائد عميقة وثيرة، ومظلات واقية كاملة، ونظام صوتي متكامل عالي الجودة، ما يضمن إبحاراً سلساً في مياه أبوظبي البحرية.", "k132": "السعة", "k133": "حتى 7 ضيوف", "k134": "القوة", "k135": "محرّكان بقدرة عالية", "k136": "الصوت", "k137": "نظام بلوتوث فاخر", "k138": "وسائل الراحة", "k139": "خدمة شواء على الجزر وصناديق تبريد", "k140": "التقييمات", "k141": "ماذا يقول ضيوفنا", "k142": "نحن مشغّل جديد نبني سمعتنا رحلةً تلو الأخرى. ستظهر تقييمات الضيوف الحقيقية هنا قريباً.", "k143": "هل خضت رحلة معنا في البحر؟ قد تكون أول تقييم مميز لدينا. شارك تجربتك الصادقة عبر النموذج أدناه — يسعدنا أن نعرف كيف كانت رحلتك.", "k144": "دورك الآن", "k145": "رأيكم يهمنا", "k146": "نسعد بثقتكم، ويشرفنا أن تشاركوا تجربتكم وتقييمكم لنواصل تقديم خدمة استثنائية.", "k147": "انقر أدناه لفتح نموذج الملاحظات السريع.", "k148": "افتح نموذج الملاحظات", "k149": "الاسم", "k150": "*", "k151": "الدولة", "k152": "تقييمك", "k153": "*", "k154": "★", "k155": "★", "k156": "★", "k157": "★", "k158": "★", "k159": "تجربتك", "k160": "*", "k161": "إرسال الملاحظات", "k162": "شكراً لك! 🙏", "k163": "ملاحظاتك تعني لنا الكثير. نتطلّع إلى الترحيب بك على متن القارب مجدداً قريباً.", "k164": "الحجوزات", "k165": "خطّط لمغامرتك البحرية", "k166": "تواصل معنا مباشرةً لتأمين التاريخ الذي تختاره. نحن مستعدون لتخصيص رحلتك بأدق التفاصيل.", "k167": "موقع الانطلاق", "k168": "مرسى مراسي، البطين، أبوظبي، الإمارات", "k169": "📍 المرسى B14", "k170": "افتح في خرائط جوجل ←", "k171": "الخط المباشر وواتساب", "k172": "+971 56 400 400 9", "k173": "راسلنا", "k174": "", "k175": "واتساب قيد الصيانة — اضغط للتواصل عبر البريد", "k176": "امسح للحجز", "k177": "يفتح واتساب فوراً — دون الحاجة إلى رقم", "k178": "📍", "k179": "جدنا هنا", "k180": "مرسى مراسي", "k181": "البطين، أبوظبي، الإمارات", "k182": "⚓ المرسى B14", "k183": "افتح في خرائط جوجل", "k184": "انقر أعلاه للحصول على الاتجاهات إلى المرسى B14", "k185": "Ocean Escape", "k186": "Adventures", "k187": "الأنشطة", "k188": "الباقات", "k189": "قاربنا", "k190": "التقييمات", "k191": "تواصل معنا", "k192": "ذكريات تدوم مدى الحياة", "k193": "اركب الخليج · طارِد الشمس", "k194": "📍 مراسي، البطين، أبوظبي · © 2026 Ocean Escape Excursion Boats and Ships Renting", "k195": "اسمك", "k196": "من أين تزورنا؟", "k197": "أخبرنا عن رحلتك...", "k198": "ثلج مجاناً", "k199": "إضافة اختيارية برسوم إضافية:", "title": "Ocean Escape Adventures — رحلات بحرية فاخرة في أبوظبي", "nav_book": "احجز", "bk_tag": "الحجز أونلاين", "bk_title": "احجز وادفع", "bk_sub": "احجز رحلتك البحرية الخاصة وادفع بأمان عبر الإنترنت — اختر باقتك، وحدّد الوقت، وأكّد حجزك خلال دقائق.", "bk_ph": "اختر باقتك والتفاصيل أدناه، ثم اضغط لإرسال رسالة حجز جاهزة عبر واتساب — راجِعها فقط ثم أرسلها.", "bk_btn": "احجز عبر واتساب", "bkLblPackage": "اختر باقتك", "bkLblPax": "عدد الضيوف", "bkLblWhen": "التاريخ والوقت المفضّل", "bkWhenPh": "مثال: الجمعة، 4:00 مساءً", "bk_link_btn": "احجز الآن", "bk_terms_pre": "بإتمام الحجز، أنت توافق على", "bk_terms_link": "الشروط والأحكام"}};
+<script>window.I18N={"en": {"k0": "Ocean Escape", "k1": "Adventures", "k2": "Activities", "k3": "Packages", "k4": "The Boat", "k5": "Reviews", "k6": "Contact", "k7": "Book Private Tour", "k8": "Enjoy a thrilling sea experience full of adventure and unforgettable memories", "k9": "Every sea trip is a chance to relax, explore, and enjoy nature's beauty", "k10": "Craft your perfect day at sea. Explore majestic islands, enjoy customized BBQ lunches, experience thrilling water sports, or relax on pristine hidden beaches.", "k11": "Book Your Escape", "k12": "Explore Packages", "k13": "100% Private & Safe", "k14": "Exclusive use of the boat for your group of up to 7 guests with certified captain.", "k15": "All-Inclusive Pricing", "k16": "Ice, water, fuel, life jacket, and specialized equipment included. No additional fees.", "k17": "Clear, Fixed Timings", "k18": "Each package runs for its fixed duration as listed below — clear timings, no surprises.", "k19": "Your safety is our highest priority.", "k20": "Every trip is led by a certified captain with life jackets and full safety equipment on board. From departure to return, you are in safe, experienced hands at all times.", "k21": "Tailored Experiences", "k22": "Unforgettable Ocean Adventures", "k23": "Mix and match your favorite ocean activities to design an unforgettable bespoke sea itinerary.", "k24": "Island Exploration", "k25": "Set off on a sea trip to the tranquil islands around Abu Dhabi and discover pristine beaches and crystal-clear waters.", "k26": "Leisure Fishing", "k27": "Enjoy a leisure fishing trip between the islands, where the passion of fishing meets the beauty of nature.", "k28": "Island BBQ Experience", "k29": "Spend the best of times with family and friends on a BBQ trip amid Abu Dhabi's stunning beaches.", "k30": "Kayak & Donut Adventure", "k31": "Feel the pure rush of adrenaline as you glide across the waves on our high-speed watersport towables.", "k32": "Sunset Cruises", "k33": "Enjoy the magic of Abu Dhabi's sunset, where the colors of the sky meet the beauty of the sea in an unforgettable scene.", "k34": "Island Beach Picnic", "k35": "Spend unforgettable times on the island beach amid soft sands and clear waters.", "k36": "Curated Charters", "k37": "Select Your Sea Package", "k38": "Fair, flat-rate pricing for the entire boat — up to 7 guests per trip. We also host private parties & celebrations with fully customized arrangements.", "k39": "Weekday Special: Enjoy 10% off any package on any weekday (excludes weekends & national holidays).", "k40": "1+1 Hrs Free", "k41": "Swimming Tour", "k42": "Refreshing Open-Water Swim", "k43": "Complimentary Water", "k44": "Safe, Calm Swimming Spot", "k45": "Professional Captain", "k46": "Group Size: Up to 7 Guests", "k47": "Total Price", "k48": "AED 399", "k49": "Select Package", "k50": "On Demand", "k51": "Boat Pick-Up & Drop", "k52": "Start your trip in comfort with our sea transfer service to and from the island, designed for a smooth and enjoyable experience.", "k53": "Pick-Up from Marasy, Al Bateen", "k54": "Drop-Off at Any Covered Destination", "k55": "Professional Captain Onboard", "k56": "Return Pick-Up On Call", "k57": "Group Size: Up to 7 Guests", "k58": "* Return pick-up is subject to boat availability and may involve a short wait during busy periods.", "k59": "Total Price", "k60": "AED 399", "k61": "Select Package", "k62": "4+1 Hrs Free", "k63": "Pick-Up & Drop with Captain", "k64": "Your boat and captain stay with you for the whole trip — ready to move whenever you are, for a comfortable and safe journey.", "k65": "Private Boat & Captain for Your Trip", "k66": "Boat & Captain Stay With You Throughout", "k67": "Cruise Our Covered Destinations at Your Pace", "k68": "Return to Marasy at the End · 5th Hour Free", "k69": "Group Size: Up to 7 Guests", "k70": "Optional add-ons at extra cost:", "k71": "BBQ", "k72": " — AED 75 per person.", "k73": "Water sports (Swimming, Kayak & Donut)", "k74": " — AED 99 per person.", "k75": "Total Price", "k76": "AED 799", "k77": "Select Package", "k78": "4+1 Hrs Free", "k79": "Island Activities Package", "k81": "Donut Ride", "k82": "Kayaking", "k83": "Beachside Island BBQ", "k84": "Group Size: Up to 7 Guests", "k85": "Total Price", "k86": "AED 999", "k87": "Select Package", "k88": "Most Popular", "k89": "5+1 Hrs Free", "k90": "Island Adventure", "k91": "Fishing Between the Islands", "k92": "Island Swimming", "k93": "Kayak & Donut", "k94": "Abu Dhabi City Tour", "k95": "Group Size: Up to 7 Guests", "k96": "Optional: add a", "k97": "beachside BBQ", "k98": "for just", "k99": "AED 75 per person", "k100": ".", "k101": "Total Price", "k102": "AED 1,499", "k103": "Select Package", "k104": "Destinations & Islands", "k105": "Places We", "k106": "Cover", "k107": "We take you on a journey to explore Abu Dhabi's most beautiful islands and coastal landmarks, with varied routes to suit every taste.", "k108": "Al Qana", "k109": "Cruise Dining", "k110": "Breakfast · Brunch · Dinner", "k111": "Maqta", "k112": "Heritage Waterway", "k113": "Breakfast · Brunch · Dinner", "k114": "Sandbar Island", "k115": "Sandbank & Watersports", "k116": "Al Maya Island", "k117": "Private Island Beach", "k118": "English Island", "k119": "Island Retreat", "k120": "Al Halah Island", "k121": "Island Escape", "k122": "Also Covering", "k123": "🏘️ Corniche City Tour", "k124": "🎨 Saadiyat Island", "k125": "🏛 Louvre Abu Dhabi", "k126": "33 FT", "k127": "Powered by Yamaha Engines", "k128": "Elite Craftsmanship", "k129": "Step Aboard Luxury", "k130": "Enjoy your trip aboard a modern 33ft vessel, fitted with advanced engines that deliver powerful performance, comfort, and safety throughout your journey.", "k131": "Equipped with expansive sunbeds, fresh deep cushions, full protective shade biminis, and a high-fidelity integrated sound system, it guarantees smooth navigation through Abu Dhabi's marine waters.", "k132": "Capacity", "k133": "Max 7 Guests", "k134": "Power", "k135": "Twin High-Output Engines", "k136": "Audio", "k137": "Premium Bluetooth Setup", "k138": "Amenities", "k139": "Island BBQ Service & Iceboxes", "k140": "Reviews", "k141": "What Our Guests Say", "k142": "We're a new operator building our reputation one trip at a time. Real guest reviews will appear here soon.", "k143": "Been out on the water with us? You could be our first featured review. Share your honest experience using the form below — we'd love to hear how your trip went.", "k144": "Your Turn", "k145": "Your Opinion Matters", "k146": "We're grateful for your trust — we'd be honored to have you share your experience and rating so we can keep delivering exceptional service.", "k147": "Tap below to open our quick feedback form.", "k148": "Open Feedback Form", "k149": "Name", "k150": "*", "k151": "Country", "k152": "Your Rating", "k153": "*", "k154": "★", "k155": "★", "k156": "★", "k157": "★", "k158": "★", "k159": "Your Experience", "k160": "*", "k161": "Submit Feedback", "k162": "Thank you! 🙏", "k163": "Your feedback means the world to us. We hope to welcome you aboard again soon.", "k164": "Reservations", "k165": "Plan Your Sea Adventure", "k166": "Reach out directly to secure your chosen date. We are ready to customize your cruise to perfection.", "k167": "Departure Location", "k168": "Marasy Marina, Al Bateen, Abu Dhabi, UAE", "k169": "📍 Berth B14", "k170": "Open in Google Maps →", "k171": "Direct Hotline & WhatsApp", "k172": "+971 56 400 400 9", "k173": "Email Us", "k174": "", "k175": "Chat on WhatsApp", "k176": "Scan to Book", "k177": "Opens WhatsApp instantly — no number needed", "k178": "📍", "k179": "Find Us Here", "k180": "Marasy Marina", "k181": "Al Bateen, Abu Dhabi, UAE", "k182": "⚓ Berth B14", "k183": "Open in Google Maps", "k184": "Tap above to get directions to Berth B14", "k185": "Ocean Escape", "k186": "Adventures", "k187": "Activities", "k188": "Packages", "k189": "Our Boat", "k190": "Reviews", "k191": "Contact", "k192": "Memories that last a lifetime", "k193": "RIDE THE GULF  ·  CHASE THE SUN", "k194": "📍 Marasy, Al Bateen, Abu Dhabi  ·  © 2026 Ocean Escape Excursion Boats and Ships Renting", "k195": "Your name", "k196": "Where are you visiting from?", "k197": "Tell us about your trip...", "k198": "Complimentary Ice", "k199": "Optional add-on at extra cost:", "k200": "Follow Us", "k201": "Send Us a Message", "k202": "We'll reply to bookings@oceanescape.ae — a copy also goes to info@oceanescape.ae.", "k203": "Your Name", "k204": "Your Email", "k205": "Message", "k206": "Send Message", "k207": "Message Sent!", "k208": "Thanks for reaching out — we'll get back to you shortly.", "title": "Ocean Escape Adventures — Premium Abu Dhabi Boat Tours", "nav_book": "Book", "bk_tag": "Book Online", "bk_title": "Book & Pay", "bk_sub": "Reserve your private boat tour and pay securely online — choose your package, pick a time, and confirm in minutes.", "bk_ph": "Pick your package and details below, then tap to send us a ready-made booking message on WhatsApp — just proofread and hit send.", "bk_btn": "Book via WhatsApp", "bkLblPackage": "Choose your package", "bkLblPax": "Number of guests", "bkLblWhen": "Preferred date & time", "bkWhenPh": "e.g. Friday, 4:00 PM", "bk_link_btn": "Book Now", "bk_terms_pre": "By booking, you agree to our", "bk_terms_link": "Terms & Conditions"}, "ar": {"k0": "Ocean Escape", "k1": "Adventures", "k2": "الأنشطة", "k3": "الباقات", "k4": "القارب", "k5": "التقييمات", "k6": "تواصل معنا", "k7": "احجز رحلة خاصة", "k8": "استمتع بتجربة بحرية مليئة بالإثارة والمغامرة وصنع ذكريات لا تُنسى", "k9": "كل رحلة بحرية هي فرصة للاسترخاء، الاستكشاف، والاستمتاع بجمال الطبيعة", "k10": "اصنع يومك المثالي في البحر. استكشف الجزر الساحرة، واستمتع بغداءٍ مشوي حسب طلبك، وعِش إثارة الرياضات المائية، أو استرخِ على شواطئ نقية مخفية.", "k11": "احجز رحلتك", "k12": "استعرض الباقات", "k13": "خصوصية وأمان 100%", "k14": "استخدام حصري للقارب لمجموعتك حتى 7 ضيوف مع قبطان معتمد.", "k15": "سعر شامل لكل شيء", "k16": "الثلج والماء والوقود وسترة النجاة والمعدات المتخصصة مشمولة. بدون رسوم إضافية.", "k17": "أوقات محددة وواضحة", "k18": "كل باقة تُنفَّذ ضمن مدتها الثابتة كما هو موضح أدناه — أوقات واضحة بلا مفاجآت.", "k19": "سلامتك هي أولويتنا القصوى.", "k20": "كل رحلة يقودها قبطان معتمد مع توفّر سترات النجاة وكامل معدات السلامة على متن القارب. من الانطلاق حتى العودة، أنت في أيدٍ آمنة وخبيرة طوال الوقت.", "k21": "تجارب مصممة خصيصاً", "k22": "مغامرات بحرية لا تُنسى", "k23": "اختر وامزج بين أنشطتك البحرية المفضلة لتصميم برنامج بحري فريد لا يُنسى.", "k24": "استكشاف الجزر", "k25": "انطلق في رحلة بحرية إلى الجزر الهادئة المحيطة بأبو ظبي لاكتشاف الشواطئ والمياه الصافية.", "k26": "صيد ترفيهي", "k27": "انطلق في رحلة صيد ترفيهية بين الجزر، حيث يجتمع شغف الصيد مع جمال الطبيعة.", "k28": "تجربة شواء بين الجزر", "k29": "اقضِ أجمل الأوقات مع العائلة والأصدقاء في رحلة شواء وسط شواطئ أبوظبي الخلابة.", "k30": "مغامرة الكاياك والدونات", "k31": "عِش نشوة الأدرينالين وأنت تنزلق فوق الأمواج على ألعابنا المائية عالية السرعة.", "k32": "رحلات الغروب", "k33": "استمتع بسحر غروب الشمس في أبوظبي، حيث تلتقي ألوان السماء بجمال البحر في مشهد لا يُنسى.", "k34": "نزهة على شاطئ الجزيرة", "k35": "اقضِ أوقاتًا لا تُنسى على شاطئ الجزيرة وسط الرمال الناعمة والمياه الصافية.", "k36": "رحلات مختارة بعناية", "k37": "اختر باقتك البحرية", "k38": "أسعار مناسبة وموحّدة للقارب بالكامل — حتى 7 ضيوف في الرحلة. كما ننظّم الحفلات والمناسبات الخاصة بترتيبات مخصصة بالكامل.", "k39": "عرض أيام الأسبوع: احصل على خصم 10% على أي باقة في أي يوم من أيام الأسبوع (باستثناء عطلات نهاية الأسبوع والأعياد الوطنية).", "k40": "ساعة + ساعة مجاناً", "k41": "جولة السباحة", "k42": "سباحة منعشة في المياه المفتوحة", "k43": "ماء مجاناً", "k44": "موقع سباحة آمن وهادئ", "k45": "قبطان محترف", "k46": "حجم المجموعة: حتى 7 ضيوف", "k47": "السعر الإجمالي", "k48": "399 درهم", "k49": "اختر الباقة", "k50": "حسب الطلب", "k51": "توصيل وإنزال بالقارب", "k52": "ابدأ رحلتك براحة مع خدمة النقل البحري من وإلى الجزيرة، المصممة لتوفير تجربة سلسة وممتعة.", "k53": "الانطلاق من مراسي، البطين", "k54": "الإنزال في أي وجهة مغطاة", "k55": "قبطان محترف على متن القارب", "k56": "عودة الاصطحاب عند الطلب", "k57": "حجم المجموعة: حتى 7 ضيوف", "k58": "* عودة الاصطحاب مرهونة بتوفر القارب وقد تتطلب انتظاراً قصيراً في أوقات الذروة.", "k59": "السعر الإجمالي", "k60": "399 درهم", "k61": "اختر الباقة", "k62": "4 ساعات + ساعة مجاناً", "k63": "توصيل وإنزال مع القبطان", "k64": "يبقى قاربك وقبطانك معك طوال الرحلة — جاهزون للتحرك متى أردت، لرحلة مريحة وآمنة.", "k65": "قارب وقبطان خاص لرحلتك", "k66": "القارب والقبطان يبقيان معك طوال الوقت", "k67": "تجوّل في وجهاتنا المغطاة على راحتك", "k68": "العودة إلى مراسي في النهاية · الساعة الخامسة مجاناً", "k69": "حجم المجموعة: حتى 7 ضيوف", "k70": "إضافات اختيارية برسوم إضافية:", "k71": "الشواء", "k72": " — 75 درهم للفرد.", "k73": "الرياضات المائية (سباحة، كاياك ودونات)", "k74": " — 99 درهم للفرد.", "k75": "السعر الإجمالي", "k76": "799 درهم", "k77": "اختر الباقة", "k78": "4 ساعات + ساعة مجاناً", "k79": "باقة أنشطة الجزيرة", "k81": "ركوب الدونات", "k82": "التجديف بالكاياك", "k83": "شواء على شاطئ الجزيرة", "k84": "حجم المجموعة: حتى 7 ضيوف", "k85": "السعر الإجمالي", "k86": "999 درهم", "k87": "اختر الباقة", "k88": "الأكثر رواجاً", "k89": "5 ساعات + ساعة مجاناً", "k90": "مغامرة الجزيرة", "k91": "الصيد بين الجزر", "k92": "السباحة في الجزيرة", "k93": "كاياك ودونات", "k94": "جولة في مدينة أبوظبي", "k95": "حجم المجموعة: حتى 7 ضيوف", "k96": "اختياري: أضف", "k97": "شواءً على الشاطئ", "k98": "مقابل", "k99": "75 درهم للفرد", "k100": " فقط.", "k101": "السعر الإجمالي", "k102": "1,499 درهم", "k103": "اختر الباقة", "k104": "الوجهات والجزر", "k105": "الأماكن التي", "k106": "نغطيها", "k107": "نأخذك في رحلة لاستكشاف أجمل الجزر والمعالم البحرية في أبوظبي، ضمن مسارات متنوعة تناسب جميع الأذواق.", "k108": "القناة", "k109": "مطاعم على الواجهة", "k110": "فطور · بيرانش · عشاء", "k111": "المقطع", "k112": "ممر مائي تراثي", "k113": "فطور · بيرانش · عشاء", "k114": "جزيرة الحاجز الرملي", "k115": "كثبان رملية ورياضات مائية", "k116": "جزيرة الماية", "k117": "شاطئ جزيرة خاص", "k118": "الجزيرة الإنجليزية", "k119": "ملاذ جزيري", "k120": "جزيرة الحالة", "k121": "استجمام في الجزيرة", "k122": "نغطي أيضاً", "k123": "🏘️ جولة في الكورنيش", "k124": "🎨 جزيرة السعديات", "k125": "🏛 لوفر أبوظبي", "k126": "33 قدم", "k127": "بمحركات ياماها", "k128": "حِرفية راقية", "k129": "اصعد إلى متن الفخامة", "k130": "استمتع برحلة بحرية على متن قارب حديث بطول 33 قدم، مزود بمحركات متطورة توفر أداءً قويًا، راحةً، وأمانًا طوال الرحلة.", "k131": "مجهّز بأسرّة تشمّس واسعة، ووسائد عميقة وثيرة، ومظلات واقية كاملة، ونظام صوتي متكامل عالي الجودة، ما يضمن إبحاراً سلساً في مياه أبوظبي البحرية.", "k132": "السعة", "k133": "حتى 7 ضيوف", "k134": "القوة", "k135": "محرّكان بقدرة عالية", "k136": "الصوت", "k137": "نظام بلوتوث فاخر", "k138": "وسائل الراحة", "k139": "خدمة شواء على الجزر وصناديق تبريد", "k140": "التقييمات", "k141": "ماذا يقول ضيوفنا", "k142": "نحن مشغّل جديد نبني سمعتنا رحلةً تلو الأخرى. ستظهر تقييمات الضيوف الحقيقية هنا قريباً.", "k143": "هل خضت رحلة معنا في البحر؟ قد تكون أول تقييم مميز لدينا. شارك تجربتك الصادقة عبر النموذج أدناه — يسعدنا أن نعرف كيف كانت رحلتك.", "k144": "دورك الآن", "k145": "رأيكم يهمنا", "k146": "نسعد بثقتكم، ويشرفنا أن تشاركوا تجربتكم وتقييمكم لنواصل تقديم خدمة استثنائية.", "k147": "انقر أدناه لفتح نموذج الملاحظات السريع.", "k148": "افتح نموذج الملاحظات", "k149": "الاسم", "k150": "*", "k151": "الدولة", "k152": "تقييمك", "k153": "*", "k154": "★", "k155": "★", "k156": "★", "k157": "★", "k158": "★", "k159": "تجربتك", "k160": "*", "k161": "إرسال الملاحظات", "k162": "شكراً لك! 🙏", "k163": "ملاحظاتك تعني لنا الكثير. نتطلّع إلى الترحيب بك على متن القارب مجدداً قريباً.", "k164": "الحجوزات", "k165": "خطّط لمغامرتك البحرية", "k166": "تواصل معنا مباشرةً لتأمين التاريخ الذي تختاره. نحن مستعدون لتخصيص رحلتك بأدق التفاصيل.", "k167": "موقع الانطلاق", "k168": "مرسى مراسي، البطين، أبوظبي، الإمارات", "k169": "📍 المرسى B14", "k170": "افتح في خرائط جوجل ←", "k171": "الخط المباشر وواتساب", "k172": "+971 56 400 400 9", "k173": "راسلنا", "k174": "", "k175": "تواصل عبر واتساب", "k176": "امسح للحجز", "k177": "يفتح واتساب فوراً — دون الحاجة إلى رقم", "k178": "📍", "k179": "جدنا هنا", "k180": "مرسى مراسي", "k181": "البطين، أبوظبي، الإمارات", "k182": "⚓ المرسى B14", "k183": "افتح في خرائط جوجل", "k184": "انقر أعلاه للحصول على الاتجاهات إلى المرسى B14", "k185": "Ocean Escape", "k186": "Adventures", "k187": "الأنشطة", "k188": "الباقات", "k189": "قاربنا", "k190": "التقييمات", "k191": "تواصل معنا", "k192": "ذكريات تدوم مدى الحياة", "k193": "اركب الخليج · طارِد الشمس", "k194": "📍 مراسي، البطين، أبوظبي · © 2026 Ocean Escape Excursion Boats and Ships Renting", "k195": "اسمك", "k196": "من أين تزورنا؟", "k197": "أخبرنا عن رحلتك...", "k198": "ثلج مجاناً", "k199": "إضافة اختيارية برسوم إضافية:", "k200": "تابعنا", "k201": "أرسل لنا رسالة", "k202": "سنرد من bookings@oceanescape.ae — وتصل نسخة أيضاً إلى info@oceanescape.ae.", "k203": "اسمك", "k204": "بريدك الإلكتروني", "k205": "الرسالة", "k206": "إرسال الرسالة", "k207": "تم إرسال رسالتك!", "k208": "شكراً لتواصلك معنا — سنرد عليك في أقرب وقت.", "title": "Ocean Escape Adventures — رحلات بحرية فاخرة في أبوظبي", "nav_book": "احجز", "bk_tag": "الحجز أونلاين", "bk_title": "احجز وادفع", "bk_sub": "احجز رحلتك البحرية الخاصة وادفع بأمان عبر الإنترنت — اختر باقتك، وحدّد الوقت، وأكّد حجزك خلال دقائق.", "bk_ph": "اختر باقتك والتفاصيل أدناه، ثم اضغط لإرسال رسالة حجز جاهزة عبر واتساب — راجِعها فقط ثم أرسلها.", "bk_btn": "احجز عبر واتساب", "bkLblPackage": "اختر باقتك", "bkLblPax": "عدد الضيوف", "bkLblWhen": "التاريخ والوقت المفضّل", "bkWhenPh": "مثال: الجمعة، 4:00 مساءً", "bk_link_btn": "احجز الآن", "bk_terms_pre": "بإتمام الحجز، أنت توافق على", "bk_terms_link": "الشروط والأحكام"}};
 
 (function(){
 function setLang(l){
@@ -1420,13 +1548,133 @@ document.addEventListener('DOMContentLoaded',function(){
     : 'Hello Ocean Escape Adventures, I\'d like to enquire about booking a private boat tour. Could you please share availability and details? Thank you.';}
   function openWa(t){window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(t),'_blank');}
   function scrollBook(){var b=document.getElementById('booking'); if(b) b.scrollIntoView({behavior:'smooth',block:'start'});}
+
+  // ── Background email notification (Web3Forms) ──────────────────────────
+  // Fires alongside every WhatsApp click so info@ and bookings@ get an email
+  // copy of the same ready-made enquiry message. Web3Forms' free tier ties
+  // one access key to one recipient inbox, so we use two keys — one signed
+  // up with info@oceanescape.ae, one with bookings@oceanescape.ae — and send
+  // two parallel requests. Get a free key at https://web3forms.com/
+  // (enter the inbox's email address, verify via the link it emails you,
+  // and it gives you the access key). Paste each key below once obtained.
+  var W3F_KEY_INFO = 'a6c22891-137a-4818-9ce3-f488ce3be04e';
+  var W3F_KEY_BOOKINGS = 'e640be0b-94e4-47a4-ac83-1f20b950a2ec';
+  function sendW3F(key, msg){
+    if(!key || key.indexOf('YOUR_WEB3FORMS_ACCESS_KEY') === 0) return; // not configured yet — silently skip
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json','Accept':'application/json'},
+      body: JSON.stringify({
+        access_key: key,
+        subject: 'New WhatsApp Enquiry — Ocean Escape Adventures Website',
+        from_name: 'Ocean Escape Website',
+        message: msg,
+        page: location.href
+      })
+    }).catch(function(err){ console.warn('Web3Forms notify failed', err); });
+  }
+  function notifyEmails(msg){
+    sendW3F(W3F_KEY_INFO, msg);
+    sendW3F(W3F_KEY_BOOKINGS, msg);
+  }
+
+  // ── Quick Email modal (replaces mailto: — no local mail client required) ──
+  // Sends straight to bookings@oceanescape.ae via Web3Forms, with a duplicate
+  // request to the info@ key so info@oceanescape.ae gets a copy too (same
+  // two-key workaround used above for the WhatsApp notifications).
+  function sendW3FForm(label, key, name, email, message){
+    if(!key) return Promise.resolve({success:false});
+    return fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json','Accept':'application/json'},
+      body: JSON.stringify({
+        access_key: key,
+        subject: 'New Website Enquiry — Ocean Escape Adventures',
+        from_name: name || 'Ocean Escape Website Visitor',
+        name: name,
+        email: email,
+        replyto: email,
+        message: message,
+        page: location.href
+      })
+    }).then(function(r){ return r.json(); }).then(function(res){
+      // Logged so a failed/blocked leg (e.g. an unverified Web3Forms recipient)
+      // is visible in the browser console instead of failing silently.
+      console.info('Web3Forms ['+label+']', res);
+      return res;
+    }).catch(function(err){ console.warn('Web3Forms submit failed ['+label+']', err); return {success:false}; });
+  }
+
   document.addEventListener('DOMContentLoaded',function(){
     // "Select Package" buttons now just jump to the live Zoho booking calendar —
     // they no longer pre-fill a package name, since that field was part of the
     // old WhatsApp-draft form and doesn't exist in the Zoho widget.
     document.querySelectorAll('[data-pkg-key]').forEach(function(el){el.addEventListener('click',function(e){e.preventDefault();scrollBook();});});
     document.querySelectorAll('[data-book-scroll]').forEach(function(el){el.addEventListener('click',function(e){e.preventDefault();scrollBook();});});
-    document.querySelectorAll('[data-wa-generic]').forEach(function(el){el.addEventListener('click',function(e){e.preventDefault();openWa(generic());});});
+    document.querySelectorAll('[data-wa-generic]').forEach(function(el){el.addEventListener('click',function(e){e.preventDefault();var msg=generic();openWa(msg);notifyEmails(msg);});});
+
+    // Quick Email modal wiring
+    var qeOpenBtn=document.getElementById('qeOpenBtn');
+    var qeOverlay=document.getElementById('qeOverlay');
+    var qeCloseBtn=document.getElementById('qeCloseBtn');
+    var qeForm=document.getElementById('qeForm');
+    var qeError=document.getElementById('qeError');
+    var qeFormWrap=document.getElementById('qeFormWrap');
+    var qeThankyou=document.getElementById('qeThankyou');
+    var qeSubmitBtn=document.getElementById('qeSubmitBtn');
+    var qeSubmitText=document.getElementById('qeSubmitText');
+
+    function openQe(e){
+      if(e) e.preventDefault();
+      if(qeOverlay) qeOverlay.classList.add('active');
+    }
+    function closeQe(){
+      if(qeOverlay) qeOverlay.classList.remove('active');
+    }
+    if(qeOpenBtn) qeOpenBtn.addEventListener('click', openQe);
+    if(qeCloseBtn) qeCloseBtn.addEventListener('click', closeQe);
+    if(qeOverlay) qeOverlay.addEventListener('click', function(e){ if(e.target===qeOverlay) closeQe(); });
+
+    if(qeForm){
+      qeForm.addEventListener('submit', function(e){
+        e.preventDefault();
+        if(qeError) qeError.style.display='none';
+        var data=new FormData(qeForm);
+        var name=(data.get('name')||'').trim();
+        var email=(data.get('email')||'').trim();
+        var message=(data.get('message')||'').trim();
+        if(!name || !email || !message){
+          if(qeError){ qeError.textContent='Please fill in your name, email, and message.'; qeError.style.display='block'; }
+          return;
+        }
+        qeSubmitBtn.disabled=true;
+        if(qeSubmitText) qeSubmitText.textContent='Sending...';
+        // Staggered slightly (not fired in the same instant) — some spam filters
+        // flag two near-identical submissions arriving at once. Also logs both
+        // results to the console so a silently-failing leg (e.g. an unverified
+        // Web3Forms recipient) is diagnosable — see console.info('Web3Forms [...]').
+        var bookingsPromise = sendW3FForm('bookings', W3F_KEY_BOOKINGS, name, email, message);
+        var infoPromise = new Promise(function(resolve){
+          setTimeout(function(){ resolve(sendW3FForm('info', W3F_KEY_INFO, name, email, message)); }, 600);
+        });
+        Promise.all([bookingsPromise, infoPromise]).then(function(results){
+          var ok=results.some(function(r){ return r && r.success; });
+          var bookingsOk = results[0] && results[0].success;
+          var infoOk = results[1] && results[1].success;
+          if(!bookingsOk || !infoOk){
+            console.warn('Web3Forms delivery check — bookings@:', bookingsOk, ' info@:', infoOk, results);
+          }
+          if(ok){
+            if(qeFormWrap) qeFormWrap.style.display='none';
+            if(qeThankyou) qeThankyou.style.display='block';
+          } else {
+            if(qeError){ qeError.textContent='Sorry, something went wrong. Please try again or WhatsApp us.'; qeError.style.display='block'; }
+            qeSubmitBtn.disabled=false;
+            if(qeSubmitText) qeSubmitText.textContent='Send Message';
+          }
+        });
+      });
+    }
   });
 })();
 </script>
